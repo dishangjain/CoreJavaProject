@@ -65,10 +65,10 @@ public class CustomerDao implements ICustomerDao {
 	
 	@Override
 	public int registerUser(UserBean userBean) throws BookingException {
-		myLogger.info("Execution in bookTrucks()");
+		myLogger.info("Execution in registerUser()");
 		
-		String query = "insert into BOOKINGDETAILS(BOOKINGID, ROOMID, USERID, BOOKEDFROM, BOOKEDTO, NUMADULTS, NUMCHILDREN, "
-						+ "AMOUNT) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into USERDETAILS(user_id, password, role, user_name, mobile_no, phone, address, email)"
+						+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
 		int recsAffected = 0;
 		
 		try(
@@ -76,24 +76,27 @@ public class CustomerDao implements ICustomerDao {
 		){
 			userBean.setUserID(Integer.toString(getUserID()));
 			preparedStatement.setString(1, userBean.getUserID());
-			preparedStatement.setString(2, userBean.getRole());
-			preparedStatement.setString(3,userBean.getUserName());
-			preparedStatement.setString(6, userBean.getMobileNumber());
-			preparedStatement.setString(7, userBean.getPhoneNumber());
-			preparedStatement.setString(8, userBean.getAddress());
-			preparedStatement.setString(9, userBean.getEmail());
+			preparedStatement.setString(2,userBean.getPassword());
+			preparedStatement.setString(3, userBean.getRole());
+			preparedStatement.setString(4,userBean.getUserName());
+			preparedStatement.setString(5, userBean.getMobileNumber());
+			preparedStatement.setString(6, userBean.getPhoneNumber());
+			preparedStatement.setString(7, userBean.getAddress());
+			preparedStatement.setString(8, userBean.getEmail());
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert
 			
 			if(recsAffected > 0){
 				//Logging the New Entry
-				/*myLogger.info("New Entry -> Booking ID : "+ bookingBean.getBookingID()
-									+ "\nCustomer ID : " + bookingBean.getCustId()
-									+ "\nCustomer Mobile : " + bookingBean.getCustMobile()
-									+ "\nTruck ID : " + bookingBean.getTruckId()
-									+ "\nNo Of Trucks : " + bookingBean.getNoOfTrucks()
-									+ "\nDate Of Transport : " + bookingBean.getDateOfTransport());*/
+				myLogger.info("New Entry -> User ID : "+ userBean.getUserID()
+									+ "\nPassword : " + userBean.getPassword()
+									+ "\nRole : " + userBean.getRole()
+									+ "\nUser Name : " + userBean.getUserName()
+									+ "\nMobile Number : " + userBean.getMobileNumber()
+									+ "\nPhone Number : " + userBean.getPhoneNumber()
+									+ "\nAddress : " + userBean.getAddress()
+									+ "\nEmail : " + userBean.getEmail());
 			}
 			else{
 				myLogger.error("System Error");

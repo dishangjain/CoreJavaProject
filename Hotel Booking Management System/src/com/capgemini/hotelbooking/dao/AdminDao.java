@@ -29,7 +29,7 @@ public class AdminDao implements IAdminDao {
 	
 	private int getHotelID(){
 		int bookingId = 0;
-		String query = "SELECT booking_id_seq.NEXTVAL FROM DUAL";
+		String query = "SELECT hotel_id_seq.NEXTVAL FROM DUAL";
 		try
 		{
 			PreparedStatement pstmt= connect.prepareStatement(query);

@@ -139,12 +139,14 @@ public class CustomerDao implements ICustomerDao {
 			
 			if(recsAffected > 0){
 				//Logging the New Entry
-				/*myLogger.info("New Entry -> Booking ID : "+ bookingBean.getBookingID()
-									+ "\nCustomer ID : " + bookingBean.getCustId()
-									+ "\nCustomer Mobile : " + bookingBean.getCustMobile()
-									+ "\nTruck ID : " + bookingBean.getTruckId()
-									+ "\nNo Of Trucks : " + bookingBean.getNoOfTrucks()
-									+ "\nDate Of Transport : " + bookingBean.getDateOfTransport());*/
+				myLogger.info("New Entry -> Booking ID : "+ bookingBean.getBookingID()
+							+ "\nRoom ID : " + bookingBean.getRoomID()
+							+ "\nUser ID : " + bookingBean.getUserID()
+							+ "\nBooked From Date : " + bookingBean.getBookedFrom()
+							+ "\nBooked To Date : " + bookingBean.getBookedTo()
+							+ "\nNumber of adults : " + bookingBean.getNumAdults()
+							+ "\nNumber of children : " + bookingBean.getNumChildren()
+							+ "\nAmount : " + bookingBean.getAmount());
 			}
 			else{
 				myLogger.error("System Error");
@@ -152,27 +154,25 @@ public class CustomerDao implements ICustomerDao {
 			}
 			
 		} catch (SQLException e) {
-			myLogger.error("Exception from bookTrucks()", e);
-			throw new BookingException("Problem in inserting data.", e);
+			myLogger.error("Exception from bookRoom()", e);
+			throw new BookingException("Problem in booking room.", e);
 		}
 		return bookingBean.getBookingID();
 	}
 
 	@Override  
 	public BookingBean viewBookingStatus(int bookingId) throws BookingException {
+		//TODO Change the query and function
 		BookingBean bookingBean = null;
-		myLogger.info("Execution in bookTrucks()");
+		myLogger.info("Execution in viewBookingStatus()");
 		
 		String query = "SELECT * FROM bookingdetails WHERE bookingid = ?";
-		
-		
 		ResultSet resultSet = null;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setInt(1, bookingId);
-						
+			preparedStatement.setInt(1, bookingId);		
 			myLogger.info("Query Execution : " + query);
 			resultSet = preparedStatement.executeQuery(); // 1 for successful insert
 			
@@ -183,10 +183,9 @@ public class CustomerDao implements ICustomerDao {
 				myLogger.error("System Error");
 				throw new BookingException("System Error. Try Again Later.");
 			}
-			
 		} catch (SQLException e) {
-			myLogger.error("Exception from bookTrucks()", e);
-			throw new BookingException("Problem in inserting data.", e);
+			myLogger.error("Exception from viewBookingStatus()", e);
+			throw new BookingException("Problem in retrieving booking status.", e);
 		}
 	}
 

@@ -1,0 +1,161 @@
+2017-09-01 14:26:10,634 INFO [myLogger] - Service: Dao injected.
+2017-09-01 14:26:12,045 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 14:26:12,045 INFO [myLogger] - Execution in retrieveTruckDetails()
+2017-09-01 14:26:12,216 INFO [myLogger] - Query Execution : Select * from TruckDetails
+2017-09-01 14:27:00,184 INFO [myLogger] - Service: Dao injected.
+2017-09-01 14:27:01,538 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 14:27:01,538 INFO [myLogger] - Execution in retrieveTruckDetails()
+2017-09-01 14:27:01,741 INFO [myLogger] - Query Execution : Select * from TruckDetails
+2017-09-01 14:27:40,276 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 14:27:40,899 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 14:27:40,947 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 14:27:40,963 INFO [myLogger] - New Entry -> Booking ID : 1000
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 3
+Date Of Transport : 2017-12-28
+2017-09-01 14:28:39,344 INFO [myLogger] - Service: Dao injected.
+2017-09-01 14:28:40,476 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 14:28:40,476 INFO [myLogger] - Execution in retrieveTruckDetails()
+2017-09-01 14:28:40,639 INFO [myLogger] - Query Execution : Select * from TruckDetails
+2017-09-01 14:29:48,042 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 14:29:48,428 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 14:29:48,428 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 14:29:48,428 INFO [myLogger] - New Entry -> Booking ID : 1001
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:48:41,512 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:48:44,886 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:48:45,136 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:48:45,760 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:48:46,151 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:48:46,151 INFO [myLogger] - New Entry -> Booking ID : 1002
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:48:46,182 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:48:46,307 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:48:46,307 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:48:46,307 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:48:46,307 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:48:46,323 INFO [myLogger] - New Entry -> Booking ID : 1003
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:49:14,167 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:49:15,386 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:49:15,401 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:49:15,745 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:49:15,823 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:49:15,839 INFO [myLogger] - New Entry -> Booking ID : 1004
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:49:15,839 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:49:15,901 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:49:15,901 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:49:15,901 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:49:15,901 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:49:15,901 INFO [myLogger] - New Entry -> Booking ID : 1005
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:53:11,159 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:53:13,612 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:53:13,628 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:53:14,252 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:53:14,393 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:53:14,393 INFO [myLogger] - New Entry -> Booking ID : 1007
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:53:14,409 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:53:14,456 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:53:14,456 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:53:14,456 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:53:14,456 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:53:14,471 INFO [myLogger] - New Entry -> Booking ID : 1008
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:53:52,221 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:53:53,127 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:53:53,143 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:53:53,487 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:53:53,580 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:53:53,580 INFO [myLogger] - New Entry -> Booking ID : 1010
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-01 18:53:53,580 INFO [myLogger] - Service: Dao injected.
+2017-09-01 18:53:53,627 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-01 18:53:53,627 INFO [myLogger] - Execution in bookTrucks()
+2017-09-01 18:53:53,627 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-01 18:53:53,627 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-01 18:53:53,627 INFO [myLogger] - New Entry -> Booking ID : 1011
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-02 12:27:50,151 INFO [myLogger] - Service: Dao injected.
+2017-09-02 12:27:53,275 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-02 12:27:53,291 INFO [myLogger] - Execution in bookTrucks()
+2017-09-02 12:27:53,635 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-02 12:27:53,760 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-02 12:27:53,791 INFO [myLogger] - New Entry -> Booking ID : 1012
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-02 12:27:53,869 INFO [myLogger] - Service: Dao injected.
+2017-09-02 12:27:53,916 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-02 12:27:53,916 INFO [myLogger] - Execution in bookTrucks()
+2017-09-02 12:27:53,916 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-02 12:27:53,916 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-02 12:27:53,916 INFO [myLogger] - New Entry -> Booking ID : 1013
+Customer ID : A111111
+Customer Mobile : 7721849377
+Truck ID : 1000
+No Of Trucks : 2
+Date Of Transport : 2017-12-12
+2017-09-05 03:12:03,941 INFO [myLogger] - Service: Dao injected.
+2017-09-05 03:12:07,263 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-05 03:12:07,263 INFO [myLogger] - Execution in retrieveTruckDetails()
+2017-09-05 03:12:08,013 INFO [myLogger] - Query Execution : Select * from TruckDetails
+2017-09-05 03:12:58,358 INFO [myLogger] - Service: Dao injected.
+2017-09-05 03:12:59,200 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-05 03:12:59,200 INFO [myLogger] - Execution in retrieveTruckDetails()
+2017-09-05 03:12:59,353 INFO [myLogger] - Query Execution : Select * from TruckDetails
+2017-09-05 03:13:44,063 INFO [myLogger] - Service: Dao injected.
+2017-09-05 03:13:45,042 INFO [myLogger] - Connection procured in TruckDao.
+2017-09-05 03:13:45,042 INFO [myLogger] - Execution in retrieveTruckDetails()
+2017-09-05 03:13:45,308 INFO [myLogger] - Query Execution : Select * from TruckDetails
+2017-09-05 03:14:12,924 INFO [myLogger] - Execution in bookTrucks()
+2017-09-05 03:14:13,186 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
+2017-09-05 03:14:13,510 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
+2017-09-05 03:14:13,849 INFO [myLogger] - New Entry -> Booking ID : 1020
+Customer ID : A111111
+Customer Mobile : 2442323434
+Truck ID : 1001
+No Of Trucks : 3
+Date Of Transport : 2014-03-23

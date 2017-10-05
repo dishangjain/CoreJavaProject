@@ -1,6 +1,7 @@
 package com.capgemini.hotelbooking.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -104,8 +105,8 @@ public class CustomerDao implements ICustomerDao {
 			}
 			
 		} catch (SQLException e) {
-			myLogger.error("Exception from bookTrucks()", e);
-			throw new BookingException("Problem in inserting data.", e);
+			myLogger.error("Exception from registerUser()", e);
+			throw new BookingException("Problem in registering user.", e);
 		}
 		return Integer.parseInt(userBean.getUserID());
 	}
@@ -114,7 +115,7 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public int bookRoom(BookingBean bookingBean) throws BookingException {
-		myLogger.info("Execution in bookTrucks()");
+		myLogger.info("Execution in bookRoom()");
 		
 		String query = "insert into BOOKINGDETAILS(BOOKINGID, ROOMID, USERID, BOOKEDFROM, BOOKEDTO, NUMADULTS, NUMCHILDREN, "
 						+ "AMOUNT) values (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -127,21 +128,11 @@ public class CustomerDao implements ICustomerDao {
 			preparedStatement.setInt(1, bookingBean.getBookingID());
 			preparedStatement.setString(2, bookingBean.getRoomID());
 			preparedStatement.setString(3, bookingBean.getUserID());
+			preparedStatement.setDate(4, Date.valueOf(bookingBean.getBookedFrom()));
+			preparedStatement.setDate(5, Date.valueOf(bookingBean.getBookedTo()));
 			preparedStatement.setInt(6, bookingBean.getNumAdults());
 			preparedStatement.setInt(7, bookingBean.getNumChildren());
 			preparedStatement.setFloat(8, bookingBean.getAmount());
-			
-			int year = bookingBean.getBookedFrom().getYear();
-			int month = bookingBean.getBookedFrom().getMonthValue();
-			int date = bookingBean.getBookedFrom().getDayOfMonth();
-			String dateString = Integer.toString(date) + "-" + Integer.toString(month) + "-" + Integer.toString(year);
-			preparedStatement.setString(4, dateString);
-			
-			year = bookingBean.getBookedTo().getYear();
-			month = bookingBean.getBookedTo().getMonthValue();
-			date = bookingBean.getBookedTo().getDayOfMonth();
-			dateString = Integer.toString(date) + "-" + Integer.toString(month) + "-" + Integer.toString(year);
-			preparedStatement.setString(5, dateString);
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert

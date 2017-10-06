@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -308,5 +309,38 @@ public class AdminDao implements IAdminDao {
 			throw new BookingException("Problem in retrieving data.", e);
 		}
 		return bookingList;
+	}
+	
+	@Override
+	public List<HotelBean> retrieveHotels() throws BookingException {
+		List<HotelBean> hotelList = new ArrayList<HotelBean>();
+		myLogger.info("Execution in retrieveHotels()");
+		String query = "SELECT * FROM hotels";
+		try(
+			Statement statement = connect.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+		){
+			myLogger.info("Query Execution : " + query);
+			while(resultSet.next()){
+				String hotelID = resultSet.getString("HOTELID");
+				String city = resultSet.getString("CITY");
+				String hotelName = resultSet.getString("HOTELNAME");
+				String address = resultSet.getString("ADDRESS");
+				String description = resultSet.getString("DESCRIPTION");
+				float avgRatePerNight = resultSet.getFloat("AVAILABLENOS");
+				String phoneNumber1 = resultSet.getString("PHONE1");
+				String phoneNumber2 = resultSet.getString("PHONE2");
+				String rating = resultSet.getString("RATING");
+				String email = resultSet.getString("EMAIL");
+				String fax = resultSet.getString("FAX");
+				
+				hotelList.add(new HotelBean(hotelID, city, hotelName, address, description, avgRatePerNight, phoneNumber1, 
+											phoneNumber2, rating, email, fax));
+			}
+		} catch (SQLException e) {
+			myLogger.error("Exception from retrieveHotels()", e);
+			throw new BookingException("Problem in retrieving data.", e);
+		}
+		return hotelList;
 	}
 }

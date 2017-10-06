@@ -116,4 +116,9 @@ public class AdminService implements IAdminService{
 		return dao.getBookingsOfDate(date);
 	}
 	
+	@Override
+	public List<HotelBean> retrieveHotels() throws BookingException {
+		return dao.retrieveHotels();
+	}
+	
 }

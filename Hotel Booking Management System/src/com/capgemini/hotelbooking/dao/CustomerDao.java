@@ -7,13 +7,17 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
 
 import com.capgemini.hotelbooking.bean.BookingBean;
+import com.capgemini.hotelbooking.bean.RoomBean;
 import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.exception.BookingException;
 import com.capgemini.hotelbooking.util.ConnectionUtil;
-
-import org.apache.log4j.Logger;
 
 public class CustomerDao implements ICustomerDao {
 	private Connection connect;
@@ -204,6 +208,42 @@ public class CustomerDao implements ICustomerDao {
 			myLogger.error("Exception from viewBookingStatus()", e);
 			throw new BookingException("Problem in retrieving booking status.", e);
 		}
+	}
+
+	@Override
+	public List<RoomBean> searchAvailableRooms() throws BookingException {
+		List<RoomBean> roomList = new ArrayList<RoomBean>();
+		myLogger.info("Execution in searchAvailableRooms()");
+		String query = "SELECT * FROM roomdetails where availability='T'";
+		try(
+			Statement statement = connect.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+		){
+			myLogger.info("Query Execution : " + query);
+			while(resultSet.next()){
+				String roomId = resultSet.getString("room_Id");
+				String hotelId = resultSet.getString("hotel_Id");
+				String roomNumber = resultSet.getString("room_No");
+				String roomType = resultSet.getString("room_type");
+				float perNightRate = resultSet.getFloat("per_night_rate");
+				String availabilityString = resultSet.getString("availability");
+				String photo = resultSet.getString("photo");
+				
+				boolean availability = false;
+				if(availabilityString.equals('T')){
+					availability = true;
+				}
+				else{
+					availability = false;
+				}
+				
+				roomList.add(new RoomBean(hotelId, roomId, roomNumber, roomType, perNightRate, availability, photo));
+			}
+		} catch (SQLException e) {
+			myLogger.error("Exception from searchAvailableRooms()", e);
+			throw new BookingException("Problem in retrieving data.", e);
+		}
+		return roomList;
 	}
 
 }

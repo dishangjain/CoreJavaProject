@@ -7,7 +7,7 @@ create table users(
 	user_id varchar(4) primary key,
 	password varchar(7), 
 	role varchar(10),
-	user_name varchar(20),
+	user_name varchar(20) unique,
 	mobile_no varchar(10),
 	phone varchar(10),
 	address varchar(25),

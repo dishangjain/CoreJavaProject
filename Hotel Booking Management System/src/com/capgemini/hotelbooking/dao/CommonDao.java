@@ -1,5 +1,7 @@
 package com.capgemini.hotelbooking.dao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -25,11 +27,28 @@ public class CommonDao implements ICommonDao {
 		myLogger.info("Connection procured in CommonDao.");
 	}
 	
+	private String generatePasswordHash(String password) throws BookingException{
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			myLogger.error("Algorithm for hash not found.");
+			throw new BookingException("System Error.");
+		}
+		messageDigest.update(password.getBytes());
+		byte[] bytes = messageDigest.digest();
+		StringBuilder stringBuilder = new StringBuilder();
+		for(int i=0;i < bytes.length;i++){
+			stringBuilder.append(Integer.toHexString(0xff & bytes[i]));
+		}
+		return stringBuilder.toString();
+	}
+	
 	@Override
 	public boolean Login(String username, String password)
 			throws BookingException {
 		myLogger.info("Execution in Login()");
-		
+		String hashedPassword = generatePasswordHash(password);
 		String query = "SELECT username,password FROM users WHERE username=? AND password=?";
 		ResultSet resultSet = null;
 		
@@ -37,9 +56,9 @@ public class CommonDao implements ICommonDao {
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
 			preparedStatement.setString(1, username);
-			preparedStatement.setString(2, password);
+			preparedStatement.setString(2, hashedPassword);
 			myLogger.info("Query Execution : " + query);
-			resultSet = preparedStatement.executeQuery(); // 1 for successful insert
+			resultSet = preparedStatement.executeQuery(); 
 			
 			if(resultSet.next()){
 				return true;

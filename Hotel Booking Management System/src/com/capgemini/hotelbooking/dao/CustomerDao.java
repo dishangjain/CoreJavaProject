@@ -1,5 +1,7 @@
 package com.capgemini.hotelbooking.dao;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -45,30 +47,47 @@ public class CustomerDao implements ICustomerDao {
 	}
 	
 	private int getUserID(){
-		int userID = 0;
+		int userId = 0;
 		String query = "SELECT user_id_seq.NEXTVAL FROM DUAL";
 		try
 		{
-			PreparedStatement pstmt= connect.prepareStatement(query);
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
 			myLogger.info("Query Execution : " + query);
-			ResultSet resultSet = pstmt.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next())
 			{
-				userID = resultSet.getInt(1);
+				userId = resultSet.getInt(1);
 			}
 		}
 		catch(SQLException e)
 		{
 			myLogger.error("Unable to generate user ID.");
 		}
-		return userID;
+		return userId;
+	}
+	
+	private String generatePasswordHash(String password) throws BookingException{
+		MessageDigest messageDigest;
+		try {
+			messageDigest = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			myLogger.error("Algorithm for hash not found.");
+			throw new BookingException("System Error.");
+		}
+		messageDigest.update(password.getBytes());
+		byte[] bytes = messageDigest.digest();
+		StringBuilder stringBuilder = new StringBuilder();
+		for(int i=0;i < bytes.length;i++){
+			stringBuilder.append(Integer.toHexString(0xff & bytes[i]));
+		}
+		return stringBuilder.toString();
 	}
 	
 	@Override
 	public int registerUser(UserBean userBean) throws BookingException {
 		myLogger.info("Execution in registerUser()");
 		
-		String query = "insert into USERDETAILS(user_id, password, role, user_name, mobile_no, phone, address, email)"
+		String query = "insert into users(user_id, password, role, user_name, mobile_no, phone, address, email)"
 						+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
 		int recsAffected = 0;
 		
@@ -77,7 +96,7 @@ public class CustomerDao implements ICustomerDao {
 		){
 			userBean.setUserID(Integer.toString(getUserID()));
 			preparedStatement.setString(1, userBean.getUserID());
-			preparedStatement.setString(2,userBean.getPassword());
+			preparedStatement.setString(2, generatePasswordHash(userBean.getPassword()));
 			preparedStatement.setString(3, userBean.getRole());
 			preparedStatement.setString(4,userBean.getUserName());
 			preparedStatement.setString(5, userBean.getMobileNumber());
@@ -86,12 +105,11 @@ public class CustomerDao implements ICustomerDao {
 			preparedStatement.setString(8, userBean.getEmail());
 						
 			myLogger.info("Query Execution : " + query);
-			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert
+			recsAffected = preparedStatement.executeUpdate();
 			
 			if(recsAffected > 0){
-				//Logging the New Entry
 				myLogger.info("New Entry -> User ID : "+ userBean.getUserID()
-									+ "\nPassword : " + userBean.getPassword()
+									+ "\nPassword Hash: " + generatePasswordHash(userBean.getPassword())
 									+ "\nRole : " + userBean.getRole()
 									+ "\nUser Name : " + userBean.getUserName()
 									+ "\nMobile Number : " + userBean.getMobileNumber()
@@ -135,10 +153,9 @@ public class CustomerDao implements ICustomerDao {
 			preparedStatement.setFloat(8, bookingBean.getAmount());
 						
 			myLogger.info("Query Execution : " + query);
-			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert
+			recsAffected = preparedStatement.executeUpdate();
 			
 			if(recsAffected > 0){
-				//Logging the New Entry
 				myLogger.info("New Entry -> Booking ID : "+ bookingBean.getBookingID()
 							+ "\nRoom ID : " + bookingBean.getRoomID()
 							+ "\nUser ID : " + bookingBean.getUserID()
@@ -174,7 +191,7 @@ public class CustomerDao implements ICustomerDao {
 		){
 			preparedStatement.setInt(1, bookingId);		
 			myLogger.info("Query Execution : " + query);
-			resultSet = preparedStatement.executeQuery(); // 1 for successful insert
+			resultSet = preparedStatement.executeQuery();
 			
 			if(resultSet.next()){
 				return bookingBean;

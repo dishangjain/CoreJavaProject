@@ -49,3 +49,12 @@ create table bookingdetails(
 	amount number(6,2)
 );
 
+drop sequence booking_id_seq;
+drop sequence hotel_id_seq;
+drop sequence user_id_seq;
+drop sequence room_id_seq;
+
+create sequence booking_id_seq;
+create sequence hotel_id_seq;
+create sequence user_id_seq;
+create sequence room_id_seq;

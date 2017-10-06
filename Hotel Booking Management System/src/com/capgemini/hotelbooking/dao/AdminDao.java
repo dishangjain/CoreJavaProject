@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 
 import com.capgemini.hotelbooking.bean.BookingBean;
 import com.capgemini.hotelbooking.bean.HotelBean;
+import com.capgemini.hotelbooking.bean.RoomBean;
 import com.capgemini.hotelbooking.exception.BookingException;
 import com.capgemini.hotelbooking.util.ConnectionUtil;
 
@@ -28,31 +29,95 @@ public class AdminDao implements IAdminDao {
 	}
 	
 	private int getHotelID(){
-		int bookingId = 0;
+		int hotelId = 0;
 		String query = "SELECT hotel_id_seq.NEXTVAL FROM DUAL";
 		try
 		{
-			PreparedStatement pstmt= connect.prepareStatement(query);
+			PreparedStatement preparedStatement= connect.prepareStatement(query);
 			myLogger.info("Query Execution : " + query);
-			ResultSet resultSet = pstmt.executeQuery();
+			ResultSet resultSet = preparedStatement.executeQuery();
 			if(resultSet.next())
 			{
-				bookingId = resultSet.getInt(1);
+				hotelId = resultSet.getInt(1);
 			}
 		}
 		catch(SQLException e)
 		{
-			myLogger.error("Unable to generate booking ID.");
+			myLogger.error("Unable to generate hotel ID.");
 		}
-		return bookingId;
+		return hotelId;
+	}
+	
+	private int getRoomID() {
+		int roomId = 0;
+		String query = "SELECT room_id_seq.NEXTVAL FROM DUAL";
+		try
+		{
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+			myLogger.info("Query Execution : " + query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				roomId = resultSet.getInt(1);
+			}
+		}
+		catch(SQLException e)
+		{
+			myLogger.error("Unable to generate room ID.");
+		}
+		return roomId;
+	}
+	
+	@Override
+	public int addRoomDetails(RoomBean roomBean) throws BookingException {
+		myLogger.info("Execution in addRoomDetails()");
+		
+		String query = "insert into ROOMDETAILS(ROOM_ID, HOTEL_ID, ROOM_NO, ROOM_TYPE, PER_NIGHT_RATE, AVAILABILITY, PHOTO)"
+						+ "values (?, ?, ?, ?, ?, ?, ?)";
+		int recsAffected = 0;
+		
+		try(
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+		){
+			roomBean.setRoomID(Integer.toString(getRoomID()));
+			preparedStatement.setString(1, roomBean.getRoomID());
+			preparedStatement.setString(2, roomBean.getHotelID());
+			preparedStatement.setString(3, roomBean.getRoomNumber());
+			preparedStatement.setString(4, roomBean.getRoomType());
+			preparedStatement.setFloat(5, roomBean.getPerNightRate());
+			preparedStatement.setBoolean(6, roomBean.isAvailable());
+			preparedStatement.setString(7, roomBean.getPhoto());
+						
+			myLogger.info("Query Execution : " + query);
+			recsAffected = preparedStatement.executeUpdate();
+			
+			if(recsAffected > 0){
+				myLogger.info("New Entry -> Room ID : "+ roomBean.getRoomID()
+									+ "\nHotel ID : " + roomBean.getHotelID()
+									+ "\nRoom Number: " + roomBean.getRoomNumber()
+									+ "\nRoom Type : " + roomBean.getRoomType()
+									+ "\nPer Night Rate : " + roomBean.getPerNightRate()
+									+ "\nAvailability : " + roomBean.isAvailable()
+									+ "\nPhoto : " + roomBean.getPhoto());
+			}
+			else{
+				myLogger.error("System Error");
+				throw new BookingException("System Error. Try Again Later.");
+			}
+			
+		} catch (SQLException e) {
+			myLogger.error("Exception from addRoomDetails()", e);
+			throw new BookingException("Problem in adding data.", e);
+		}
+		return Integer.parseInt(roomBean.getRoomID());
 	}
 
 	@Override
 	public int addHotelDetails(HotelBean hotelBean) throws BookingException {
 		myLogger.info("Execution in addHotelDetails()");
 		
-		String query = "insert into BOOKINGDETAILS(HOTELID, CITY, HOTELNAME, ADDRESS, DESCRIPTION, AVGPATEPERNIGHT, PHONE1,"
-						+ "PHONE2, RATING, EMAIL, FAX) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String query = "insert into HOTELS(HOTEL_ID, CITY, HOTEL_NAME, ADDRESS, DESCRIPTION, AVG_RATE_PER_NIGHT, PHONE_NO1,"
+						+ "PHONE_NO2, RATING, EMAIL, FAX) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		int recsAffected = 0;
 		
 		try(
@@ -72,10 +137,9 @@ public class AdminDao implements IAdminDao {
 			preparedStatement.setString(11, hotelBean.getFax());
 						
 			myLogger.info("Query Execution : " + query);
-			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert
+			recsAffected = preparedStatement.executeUpdate();
 			
 			if(recsAffected > 0){
-				//Logging the New Entry
 				myLogger.info("New Entry -> Hotel ID : "+ hotelBean.getHotelID()
 									+ "\nCity : " + hotelBean.getCity()
 									+ "\nHotel Name : " + hotelBean.getHotelName()
@@ -115,10 +179,9 @@ public class AdminDao implements IAdminDao {
 			preparedStatement.setString(3, hotelID);
 						
 			myLogger.info("Query Execution : " + query);
-			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert
+			recsAffected = preparedStatement.executeUpdate();
 			
 			if(recsAffected > 0){
-				//Logging the New Entry
 				myLogger.info("Hotel Table Updated."
 							+ "\nHotel ID : " + hotelID
 							+ "\nColumn Name : " + attributeName
@@ -153,12 +216,11 @@ public class AdminDao implements IAdminDao {
 			preparedStatement.setString(3, roomID);
 						
 			myLogger.info("Query Execution : " + query);
-			recsAffected = preparedStatement.executeUpdate(); // 1 for successful insert
+			recsAffected = preparedStatement.executeUpdate();
 			
 			if(recsAffected > 0){
-				//Logging the New Entry
-				myLogger.info("Hotel Table Updated."
-						+ "\nHotel ID : " + roomID
+				myLogger.info("Room Table Updated."
+						+ "\nRoom ID : " + roomID
 						+ "\nColumn Name : " + attributeName
 						+ "Column Value : " + attributeValue);
 			}
@@ -189,7 +251,7 @@ public class AdminDao implements IAdminDao {
 			preparedStatement.setString(1, hotelID);
 						
 			myLogger.info("Query Execution : " + query);
-			resultSet = preparedStatement.executeQuery(); // 1 for successful insert
+			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()){
 				int bookingID = Integer.parseInt(resultSet.getString("BOOKINGID"));
@@ -213,6 +275,7 @@ public class AdminDao implements IAdminDao {
 
 	@Override
 	public List<BookingBean> getBookingsOfDate(LocalDate localDate) throws BookingException {
+		//TODO Change query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
 		myLogger.info("Execution in getBookingsOfDate()");
 		String query = "SELECT * FROM bookingdetails WHERE bookedFrom = TO_DATE(?)";
@@ -225,7 +288,7 @@ public class AdminDao implements IAdminDao {
 			preparedStatement.setDate(1, sqlDate);
 						
 			myLogger.info("Query Execution : " + query);
-			resultSet = preparedStatement.executeQuery(); // 1 for successful insert
+			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()){
 				int bookingID = Integer.parseInt(resultSet.getString("BOOKINGID"));

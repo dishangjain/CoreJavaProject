@@ -276,7 +276,7 @@ public class AdminDao implements IAdminDao {
 
 	@Override
 	public List<BookingBean> getBookingsOfDate(LocalDate localDate) throws BookingException {
-		//TODO Change query and function
+		//TODO Change the query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
 		myLogger.info("Execution in getBookingsOfDate()");
 		String query = "SELECT * FROM bookingdetails WHERE bookedFrom = TO_DATE(?)";
@@ -342,5 +342,68 @@ public class AdminDao implements IAdminDao {
 			throw new BookingException("Problem in retrieving data.", e);
 		}
 		return hotelList;
+	}
+
+	@Override
+	public boolean deleteHotelDetails(String hotelID) throws BookingException {
+		myLogger.info("Execution in deleteHotelDetails()");
+		
+		String query = "DELETE FROM hotels WHERE hotelId=?";
+		int recsAffected = 0;
+		
+		try(
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+		){
+			preparedStatement.setString(1, hotelID);
+						
+			myLogger.info("Query Execution : " + query);
+			recsAffected = preparedStatement.executeUpdate();
+			
+			if(recsAffected > 0){
+				myLogger.info("1 row deleted from hotels."
+						+ "\nHotel ID of deleted row : " + hotelID);
+			}
+			else{
+				myLogger.error("System Error");
+				throw new BookingException("System Error. Try Again Later.");
+			}
+			
+		} catch (SQLException e) {
+			myLogger.error("Exception from deleteHotelDetails()", e);
+			throw new BookingException("Problem in deleting data.", e);
+		}
+		return true;
+	}
+
+	@Override
+	public boolean deleteRoomDetails(String roomID) throws BookingException {
+		myLogger.info("Execution in deletRoomDetails()");
+		
+		String query = "DELETE FROM roomdetails WHERE roomID=?";
+		int recsAffected = 0;
+		
+		try(
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+		){
+			preparedStatement.setString(1, roomID);
+						
+			myLogger.info("Query Execution : " + query);
+			recsAffected = preparedStatement.executeUpdate();
+			
+			if(recsAffected > 0){
+				myLogger.info("1 row deleted from roomdetails."
+						+ "\nRoom ID of deleted row : " + roomID);
+			}
+			else{
+				myLogger.error("System Error");
+				throw new BookingException("System Error. Try Again Later.");
+				
+			}
+			
+		} catch (SQLException e) {
+			myLogger.error("Exception from deleteRoomDetails()", e);
+			throw new BookingException("Problem in deleting data.", e);
+		}
+		return true;
 	}
 }

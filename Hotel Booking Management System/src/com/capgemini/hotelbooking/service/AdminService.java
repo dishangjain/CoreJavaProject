@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.capgemini.hotelbooking.bean.BookingBean;
 import com.capgemini.hotelbooking.bean.HotelBean;
+import com.capgemini.hotelbooking.bean.RoomBean;
 import com.capgemini.hotelbooking.dao.AdminDao;
 import com.capgemini.hotelbooking.dao.IAdminDao;
 import com.capgemini.hotelbooking.exception.BookingException;
@@ -119,6 +120,21 @@ public class AdminService implements IAdminService{
 	@Override
 	public List<HotelBean> retrieveHotels() throws BookingException {
 		return dao.retrieveHotels();
+	}
+
+	@Override
+	public boolean deleteHotelDetails(String hotelID) throws BookingException {
+		return dao.deleteHotelDetails(hotelID);
+	}
+
+	@Override
+	public int addRoomDetails(RoomBean roomBean) throws BookingException {
+		return dao.addRoomDetails(roomBean);
+	}
+
+	@Override
+	public boolean deleteRoomDetails(String roomID) throws BookingException {
+		return dao.deleteRoomDetails(roomID);
 	}
 	
 }

@@ -1,9 +1,12 @@
 package com.capgemini.hotelbooking.service;
 
 import java.time.LocalDate;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.capgemini.hotelbooking.bean.BookingBean;
+import com.capgemini.hotelbooking.bean.RoomBean;
 import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.dao.CustomerDao;
 import com.capgemini.hotelbooking.dao.ICustomerDao;
@@ -101,6 +104,9 @@ public class CustomerService implements ICustomerService {
 	public BookingBean viewBookingStatus(int bookingId) throws BookingException {
 		return dao.viewBookingStatus(bookingId);
 	}
-	
 
+	@Override
+	public List<RoomBean> searchAvailableRooms() throws BookingException {
+		return dao.searchAvailableRooms();
+	}
 }

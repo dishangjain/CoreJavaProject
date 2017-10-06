@@ -5,4 +5,4 @@ import com.capgemini.hotelbooking.exception.BookingException;
 
 public interface ICommonService {
 	public UserBean Login(String username, String password) throws BookingException;
-}
+	}

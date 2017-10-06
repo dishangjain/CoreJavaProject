@@ -15,7 +15,7 @@ public interface IAdminService {
 	public int addRoomDetails(RoomBean roomBean) throws BookingException;
 	public int updateRoomDetails(String roomID,String attributeName,String attributeValue) throws BookingException;
 	public boolean deleteRoomDetails(String roomID) throws BookingException;
-	public List<BookingBean> getBookingsOfHotel(String hotelID) throws BookingException;
-	public List<BookingBean> getBookingsOfDate(LocalDate date) throws BookingException;
+	public List<BookingBean> viewBookingsOfHotel(String hotelID) throws BookingException;
+	public List<BookingBean> viewBookingsOfDate(LocalDate date) throws BookingException;
 	public List<HotelBean> retrieveHotels() throws BookingException;
 }

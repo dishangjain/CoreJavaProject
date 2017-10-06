@@ -108,13 +108,13 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public List<BookingBean> getBookingsOfHotel(String hotelID) throws BookingException {
-		return dao.getBookingsOfHotel(hotelID);
+	public List<BookingBean> viewBookingsOfHotel(String hotelID) throws BookingException {
+		return dao.viewBookingsOfHotel(hotelID);
 	}
 
 	@Override
-	public List<BookingBean> getBookingsOfDate(LocalDate date) throws BookingException {
-		return dao.getBookingsOfDate(date);
+	public List<BookingBean> viewBookingsOfDate(LocalDate date) throws BookingException {
+		return dao.viewBookingsOfDate(date);
 	}
 	
 	@Override

@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import com.capgemini.hotelbooking.bean.BookingBean;
 import com.capgemini.hotelbooking.bean.HotelBean;
 import com.capgemini.hotelbooking.bean.RoomBean;
+import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.exception.BookingException;
 import com.capgemini.hotelbooking.util.ConnectionUtil;
 
@@ -239,7 +240,7 @@ public class AdminDao implements IAdminDao {
 	}
 
 	@Override
-	public List<BookingBean> getBookingsOfHotel(String hotelID) throws BookingException {
+	public List<BookingBean> viewBookingsOfHotel(String hotelID) throws BookingException {
 		//TODO Change the query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
 		myLogger.info("Execution in getBookingsOfHotel()");
@@ -275,7 +276,7 @@ public class AdminDao implements IAdminDao {
 	}
 
 	@Override
-	public List<BookingBean> getBookingsOfDate(LocalDate localDate) throws BookingException {
+	public List<BookingBean> viewBookingsOfDate(LocalDate localDate) throws BookingException {
 		//TODO Change the query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
 		myLogger.info("Execution in getBookingsOfDate()");
@@ -405,5 +406,11 @@ public class AdminDao implements IAdminDao {
 			throw new BookingException("Problem in deleting data.", e);
 		}
 		return true;
+	}
+
+	@Override
+	public List<UserBean> viewGuestList() throws BookingException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

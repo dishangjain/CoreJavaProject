@@ -4,5 +4,5 @@ import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.exception.BookingException;
 
 public interface ICommonDao {
-	public UserBean Login(String username, String password) throws BookingException;
+	public UserBean login(String username, String password) throws BookingException;
 }

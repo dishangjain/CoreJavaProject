@@ -1,7 +1,7 @@
 package com.capgemini.hotelbooking.bean;
 
 public class UserBean {
-	private String userID;
+	private int userID;
 	private String password;
 	private String role;
 	private String userName;
@@ -11,7 +11,7 @@ public class UserBean {
 	private String phoneNumber;
 	
 	
-	public UserBean(String userID, String password, String role,
+	public UserBean(int userID, String password, String role,
 			String userName, String mobileNumber, String address, String email,
 			String phoneNumber) {
 		super();
@@ -25,10 +25,10 @@ public class UserBean {
 		this.phoneNumber = phoneNumber;
 	}
 	
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 	public String getPassword() {

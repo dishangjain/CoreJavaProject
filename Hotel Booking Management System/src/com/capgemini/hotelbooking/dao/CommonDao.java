@@ -42,7 +42,7 @@ public class CommonDao implements ICommonDao {
 	}
 	
 	@Override
-	public UserBean Login(String username, String password)
+	public UserBean login(String username, String password)
 			throws BookingException {
 		myLogger.info("Execution in Login()");
 		String hashedPassword = generatePasswordHash(password);

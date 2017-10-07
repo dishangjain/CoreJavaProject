@@ -251,7 +251,6 @@ public class AdminDao implements IAdminDao {
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
 			preparedStatement.setString(1, hotelID);
-						
 			myLogger.info("Query Execution : " + query);
 			resultSet = preparedStatement.executeQuery();
 			

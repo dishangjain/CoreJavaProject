@@ -137,6 +137,7 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public int bookRoom(BookingBean bookingBean) throws BookingException {
+		//TODO Change the query and function
 		myLogger.info("Execution in bookRoom()");
 		
 		String query = "insert into BOOKINGDETAILS(BOOKINGID, ROOMID, USERID, BOOKEDFROM, BOOKEDTO, NUMADULTS, NUMCHILDREN, "
@@ -212,6 +213,7 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public List<RoomBean> searchAvailableRooms() throws BookingException {
+		//TODO change the query and function
 		List<RoomBean> roomList = new ArrayList<RoomBean>();
 		myLogger.info("Execution in searchAvailableRooms()");
 		String query = "SELECT * FROM roomdetails where availability='T'";

@@ -2,7 +2,7 @@ package com.capgemini.hotelbooking.bean;
 
 
 public class RoomBean {
-	private String hotelID;
+	private int hotelID;
 	private String roomID;
 	private String roomNumber;
 	private String roomType;
@@ -10,7 +10,7 @@ public class RoomBean {
 	private boolean available;
 	private String photo;
 	
-	public RoomBean(String hotelID, String roomID, String roomNumber,
+	public RoomBean(int hotelID, String roomID, String roomNumber,
 			String roomType, float perNightRate, boolean availability,
 			String photo) {
 		super();
@@ -23,10 +23,10 @@ public class RoomBean {
 		this.photo = photo;
 	}
 	
-	public String getHotelID() {
+	public int getHotelID() {
 		return hotelID;
 	}
-	public void setHotelID(String hotelID) {
+	public void setHotelID(int hotelID) {
 		this.hotelID = hotelID;
 	}
 	public String getRoomID() {

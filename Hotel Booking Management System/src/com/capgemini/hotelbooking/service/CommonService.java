@@ -18,8 +18,8 @@ public class CommonService implements ICommonService {
 	}
 	
 	@Override
-	public UserBean Login(String username, String password)
+	public UserBean login(String username, String password)
 			throws BookingException {
-		return dao.Login(username, password);
+		return dao.login(username, password);
 	}
 }

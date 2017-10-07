@@ -1,7 +1,7 @@
 package com.capgemini.hotelbooking.bean;
 
 public class HotelBean {
-	private String hotelID;
+	private int hotelID;
 	private String city;
 	private String hotelName;
 	private String address;
@@ -13,7 +13,7 @@ public class HotelBean {
 	private String email;
 	private String fax;
 	
-	public HotelBean(String hotelID, String city, String hotelName,
+	public HotelBean(int hotelID, String city, String hotelName,
 			String address, String description, float avgRatePerNight,
 			String phoneNumber1, String phoneNumber2, String rating,
 			String email, String fax) {
@@ -30,10 +30,10 @@ public class HotelBean {
 		this.email = email;
 		this.fax = fax;
 	}
-	public String getHotelID() {
+	public int getHotelID() {
 		return hotelID;
 	}
-	public void setHotelID(String hotelID) {
+	public void setHotelID(int hotelID) {
 		this.hotelID = hotelID;
 	}
 	public String getCity() {

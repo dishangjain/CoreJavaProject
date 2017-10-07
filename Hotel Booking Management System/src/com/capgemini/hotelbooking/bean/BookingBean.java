@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class BookingBean {
 	private int bookingID;
-	private String roomID;
-	private String userID;
+	private int roomID;
+	private int userID;
 	private int numAdults;
 	private int numChildren;
 	private float amount;
 	private LocalDate BookedFrom;
 	private LocalDate BookedTo;
 	
-	public BookingBean(int bookingID, String roomID, String userID,
+	public BookingBean(int bookingID, int roomID, int userID,
 			int numAdults, int numChildren, float amount, LocalDate bookedFrom,
 			LocalDate bookedTo) {
 		super();
@@ -32,16 +32,16 @@ public class BookingBean {
 	public void setBookingID(int bookingID) {
 		this.bookingID = bookingID;
 	}
-	public String getRoomID() {
+	public int getRoomID() {
 		return roomID;
 	}
-	public void setRoomID(String roomID) {
+	public void setRoomID(int roomID) {
 		this.roomID = roomID;
 	}
-	public String getUserID() {
+	public int getUserID() {
 		return userID;
 	}
-	public void setUserID(String userID) {
+	public void setUserID(int userID) {
 		this.userID = userID;
 	}
 	public int getNumAdults() {

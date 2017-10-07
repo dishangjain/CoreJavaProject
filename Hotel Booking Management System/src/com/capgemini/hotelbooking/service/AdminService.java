@@ -96,19 +96,19 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public int updateHotelDetails(String hotelID, String attributeName,
+	public int updateHotelDetails(int hotelID, String attributeName,
 			String attributeValue) throws BookingException {
 		return dao.updateHotelDetails(hotelID, attributeName, attributeValue);
 	}
 
 	@Override
-	public int updateRoomDetails(String roomID, String attributeName,
+	public int updateRoomDetails(int roomID, String attributeName,
 			String attributeValue) throws BookingException {
 		return dao.updateRoomDetails(roomID, attributeName, attributeValue);
 	}
 
 	@Override
-	public List<BookingBean> viewBookingsOfHotel(String hotelID) throws BookingException {
+	public List<BookingBean> viewBookingsOfHotel(int hotelID) throws BookingException {
 		return dao.viewBookingsOfHotel(hotelID);
 	}
 
@@ -116,14 +116,9 @@ public class AdminService implements IAdminService{
 	public List<BookingBean> viewBookingsOfDate(LocalDate date) throws BookingException {
 		return dao.viewBookingsOfDate(date);
 	}
-	
-	@Override
-	public List<HotelBean> retrieveHotels() throws BookingException {
-		return dao.retrieveHotels();
-	}
 
 	@Override
-	public boolean deleteHotelDetails(String hotelID) throws BookingException {
+	public boolean deleteHotelDetails(int hotelID) throws BookingException {
 		return dao.deleteHotelDetails(hotelID);
 	}
 
@@ -133,7 +128,7 @@ public class AdminService implements IAdminService{
 	}
 
 	@Override
-	public boolean deleteRoomDetails(String roomID) throws BookingException {
+	public boolean deleteRoomDetails(int roomID) throws BookingException {
 		return dao.deleteRoomDetails(roomID);
 	}
 	

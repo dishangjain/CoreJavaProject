@@ -5,13 +5,13 @@ drop table bookingdetails cascade constraints;
 
 create table users(
 	user_id varchar(4) primary key,
-	password varchar(7), 
+	password varchar(32), 
 	role varchar(10),
 	user_name varchar(20) unique,
 	mobile_no varchar(10),
 	phone varchar(10),
 	address varchar(25),
-	email varchar(15)
+	email varchar(30)
 );
 
 create table hotels(
@@ -24,7 +24,7 @@ create table hotels(
 	phone_no1 varchar(10),
 	phone_no2 varchar(10),
 	rating varchar(4),
-	email varchar(15),
+	email varchar(30),
 	fax varchar(15)
 );
 
@@ -58,3 +58,6 @@ create sequence booking_id_seq;
 create sequence hotel_id_seq;
 create sequence user_id_seq;
 create sequence room_id_seq;
+
+insert into users values(0,'36bcbb801f5052739af822c6ea51434','admin','system',
+'7721849377','9324352142','Capgemini Pune','jaindishang24@gmail.com');

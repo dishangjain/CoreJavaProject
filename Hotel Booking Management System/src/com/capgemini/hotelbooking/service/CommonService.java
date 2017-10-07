@@ -1,7 +1,11 @@
 package com.capgemini.hotelbooking.service;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
+import com.capgemini.hotelbooking.bean.HotelBean;
+import com.capgemini.hotelbooking.bean.RoomBean;
 import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.dao.CommonDao;
 import com.capgemini.hotelbooking.dao.ICommonDao;
@@ -21,5 +25,15 @@ public class CommonService implements ICommonService {
 	public UserBean login(String username, String password)
 			throws BookingException {
 		return dao.login(username, password);
+	}
+
+	@Override
+	public List<HotelBean> retrieveHotels() throws BookingException {
+		return dao.retrieveHotels();
+	}
+
+	@Override
+	public List<RoomBean> retrieveRooms() throws BookingException {
+		return dao.retrieveRooms();
 	}
 }

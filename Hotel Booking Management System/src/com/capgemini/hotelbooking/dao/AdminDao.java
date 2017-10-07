@@ -75,20 +75,19 @@ public class AdminDao implements IAdminDao {
 		myLogger.info("Execution in addRoomDetails()");
 		
 		String query = "insert into ROOMDETAILS(ROOM_ID, HOTEL_ID, ROOM_NO, ROOM_TYPE, PER_NIGHT_RATE, AVAILABILITY, PHOTO)"
-						+ "values (?, ?, ?, ?, ?, ?, ?)";
+						+ "values (?, ?, ?, ?, ?, 'T', ?)";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			roomBean.setRoomID(Integer.toString(getRoomID()));
-			preparedStatement.setString(1, roomBean.getRoomID());
-			preparedStatement.setString(2, roomBean.getHotelID());
+			roomBean.setRoomID(getRoomID());
+			preparedStatement.setInt(1, roomBean.getRoomID());
+			preparedStatement.setInt(2, roomBean.getHotelID());
 			preparedStatement.setString(3, roomBean.getRoomNumber());
 			preparedStatement.setString(4, roomBean.getRoomType());
 			preparedStatement.setFloat(5, roomBean.getPerNightRate());
-			preparedStatement.setBoolean(6, roomBean.isAvailable());
-			preparedStatement.setString(7, roomBean.getPhoto());
+			preparedStatement.setString(6, roomBean.getPhoto());
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate();
@@ -111,7 +110,7 @@ public class AdminDao implements IAdminDao {
 			myLogger.error("Exception from addRoomDetails()", e);
 			throw new BookingException("Problem in adding data.", e);
 		}
-		return Integer.parseInt(roomBean.getRoomID());
+		return roomBean.getRoomID();
 	}
 
 	@Override
@@ -125,8 +124,8 @@ public class AdminDao implements IAdminDao {
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			hotelBean.setHotelID(Integer.toString(getHotelID()));
-			preparedStatement.setString(1, hotelBean.getHotelID());
+			hotelBean.setHotelID(getHotelID());
+			preparedStatement.setInt(1, hotelBean.getHotelID());
 			preparedStatement.setString(2, hotelBean.getCity());
 			preparedStatement.setString(3, hotelBean.getHotelName());
 			preparedStatement.setString(4, hotelBean.getAddress());
@@ -162,27 +161,24 @@ public class AdminDao implements IAdminDao {
 			myLogger.error("Exception from addHotelDetails()", e);
 			throw new BookingException("Problem in adding data.", e);
 		}
-		return Integer.parseInt(hotelBean.getHotelID());
+		return hotelBean.getHotelID();
 	}
 
 	@Override
-	public int updateHotelDetails(String hotelID, String attributeName, String attributeValue) 
+	public int updateHotelDetails(int hotelID, String attributeName, String attributeValue) 
 			throws BookingException {
 		myLogger.info("Execution in updateHotelDetails()");
-		
-		String query = "UPDATE hotels SET ?=? WHERE hotelID=?";
+		String query = "UPDATE hotels SET " + attributeName + "=? WHERE HOTEL_ID=?";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setString(1, attributeName);
-			preparedStatement.setString(2, attributeValue);
-			preparedStatement.setString(3, hotelID);
+			preparedStatement.setString(1, attributeValue);
+			preparedStatement.setInt(2, hotelID);
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate();
-			
 			if(recsAffected > 0){
 				myLogger.info("Hotel Table Updated."
 							+ "\nHotel ID : " + hotelID
@@ -203,19 +199,19 @@ public class AdminDao implements IAdminDao {
 	}
 
 	@Override
-	public int updateRoomDetails(String roomID, String attributeName,
+	public int updateRoomDetails(int roomID, String attributeName,
 			String attributeValue) throws BookingException {
 		myLogger.info("Execution in updateRoomDetails()");
 		
-		String query = "UPDATE roomdetails SET ?=? WHERE roomID=?";
+		String query = "UPDATE roomdetails SET " +attributeName+"=? WHERE room_ID=?";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setString(1, attributeName);
-			preparedStatement.setString(2, attributeValue);
-			preparedStatement.setString(3, roomID);
+			
+			preparedStatement.setString(1, attributeValue);
+			preparedStatement.setInt(2, roomID);
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate();
@@ -240,7 +236,7 @@ public class AdminDao implements IAdminDao {
 	}
 
 	@Override
-	public List<BookingBean> viewBookingsOfHotel(String hotelID) throws BookingException {
+	public List<BookingBean> viewBookingsOfHotel(int hotelID) throws BookingException {
 		//TODO Change the query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
 		myLogger.info("Execution in getBookingsOfHotel()");
@@ -250,14 +246,14 @@ public class AdminDao implements IAdminDao {
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setString(1, hotelID);
+			preparedStatement.setInt(1, hotelID);
 			myLogger.info("Query Execution : " + query);
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()){
 				int bookingID = Integer.parseInt(resultSet.getString("BOOKINGID"));
-				String userID = resultSet.getString("USERID");
-				String roomID = resultSet.getString("ROOMID");
+				int userID = resultSet.getInt("USERID");
+				int roomID = resultSet.getInt("ROOMID");
 				int numAdults = resultSet.getInt("NUMADULTS");
 				int numChildren = resultSet.getInt("NUMCHILDREN");
 				float amount = resultSet.getFloat("AMOUNT");
@@ -292,9 +288,9 @@ public class AdminDao implements IAdminDao {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()){
-				int bookingID = Integer.parseInt(resultSet.getString("BOOKINGID"));
-				String userID = resultSet.getString("USERID");
-				String roomID = resultSet.getString("ROOMID");
+				int bookingID = resultSet.getInt("BOOKINGID");
+				int userID = resultSet.getInt("USERID");
+				int roomID = resultSet.getInt("ROOMID");
 				int numAdults = resultSet.getInt("NUMADULTS");
 				int numChildren = resultSet.getInt("NUMCHILDREN");
 				float amount = resultSet.getFloat("AMOUNT");
@@ -310,51 +306,18 @@ public class AdminDao implements IAdminDao {
 		}
 		return bookingList;
 	}
-	
-	@Override
-	public List<HotelBean> retrieveHotels() throws BookingException {
-		List<HotelBean> hotelList = new ArrayList<HotelBean>();
-		myLogger.info("Execution in retrieveHotels()");
-		String query = "SELECT * FROM hotels";
-		try(
-			Statement statement = connect.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
-		){
-			myLogger.info("Query Execution : " + query);
-			while(resultSet.next()){
-				String hotelID = resultSet.getString("HOTELID");
-				String city = resultSet.getString("CITY");
-				String hotelName = resultSet.getString("HOTELNAME");
-				String address = resultSet.getString("ADDRESS");
-				String description = resultSet.getString("DESCRIPTION");
-				float avgRatePerNight = resultSet.getFloat("AVAILABLENOS");
-				String phoneNumber1 = resultSet.getString("PHONE1");
-				String phoneNumber2 = resultSet.getString("PHONE2");
-				String rating = resultSet.getString("RATING");
-				String email = resultSet.getString("EMAIL");
-				String fax = resultSet.getString("FAX");
-				
-				hotelList.add(new HotelBean(hotelID, city, hotelName, address, description, avgRatePerNight, phoneNumber1, 
-											phoneNumber2, rating, email, fax));
-			}
-		} catch (SQLException e) {
-			myLogger.error("Exception from retrieveHotels()", e);
-			throw new BookingException("Problem in retrieving data.", e);
-		}
-		return hotelList;
-	}
 
 	@Override
-	public boolean deleteHotelDetails(String hotelID) throws BookingException {
+	public boolean deleteHotelDetails(int hotelID) throws BookingException {
 		myLogger.info("Execution in deleteHotelDetails()");
 		
-		String query = "DELETE FROM hotels WHERE hotelId=?";
+		String query = "DELETE FROM hotels WHERE hotel_ID=?";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setString(1, hotelID);
+			preparedStatement.setInt(1, hotelID);
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate();
@@ -376,16 +339,16 @@ public class AdminDao implements IAdminDao {
 	}
 
 	@Override
-	public boolean deleteRoomDetails(String roomID) throws BookingException {
+	public boolean deleteRoomDetails(int roomID) throws BookingException {
 		myLogger.info("Execution in deletRoomDetails()");
 		
-		String query = "DELETE FROM roomdetails WHERE roomID=?";
+		String query = "DELETE FROM roomdetails WHERE room_ID=?";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setString(1, roomID);
+			preparedStatement.setInt(1, roomID);
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate();

@@ -7,7 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,21 +91,20 @@ public class CustomerDao implements ICustomerDao {
 		myLogger.info("Execution in registerUser()");
 		
 		String query = "insert into users(user_id, password, role, user_name, mobile_no, phone, address, email)"
-						+ "values (?, ?, ?, ?, ?, ?, ?, ?)";
+						+ "values (?, ?, 'customer', ?, ?, ?, ?, ?)";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			userBean.setUserID(Integer.toString(getUserID()));
-			preparedStatement.setString(1, userBean.getUserID());
+			userBean.setUserID(getUserID());
+			preparedStatement.setInt(1, userBean.getUserID());
 			preparedStatement.setString(2, generatePasswordHash(userBean.getPassword()));
-			preparedStatement.setString(3, userBean.getRole());
-			preparedStatement.setString(4,userBean.getUserName());
-			preparedStatement.setString(5, userBean.getMobileNumber());
-			preparedStatement.setString(6, userBean.getPhoneNumber());
-			preparedStatement.setString(7, userBean.getAddress());
-			preparedStatement.setString(8, userBean.getEmail());
+			preparedStatement.setString(3,userBean.getUserName());
+			preparedStatement.setString(4, userBean.getMobileNumber());
+			preparedStatement.setString(5, userBean.getPhoneNumber());
+			preparedStatement.setString(6, userBean.getAddress());
+			preparedStatement.setString(7, userBean.getEmail());
 						
 			myLogger.info("Query Execution : " + query);
 			recsAffected = preparedStatement.executeUpdate();
@@ -130,7 +128,7 @@ public class CustomerDao implements ICustomerDao {
 			myLogger.error("Exception from registerUser()", e);
 			throw new BookingException("Problem in registering user.", e);
 		}
-		return Integer.parseInt(userBean.getUserID());
+		return userBean.getUserID();
 	}
 
 	
@@ -140,7 +138,7 @@ public class CustomerDao implements ICustomerDao {
 		//TODO Change the query and function
 		myLogger.info("Execution in bookRoom()");
 		
-		String query = "insert into BOOKINGDETAILS(BOOKINGID, ROOMID, USERID, BOOKEDFROM, BOOKEDTO, NUMADULTS, NUMCHILDREN, "
+		String query = "insert into BOOKINGDETAILS(BOOKING_ID, ROOM_ID, USER_ID, BOOKED_FROM, BOOKED_TO, NO_OF_ADULTS, NO_OF_CHILDREN, "
 						+ "AMOUNT) values (?, ?, ?, ?, ?, ?, ?, ?)";
 		int recsAffected = 0;
 		
@@ -149,8 +147,8 @@ public class CustomerDao implements ICustomerDao {
 		){
 			bookingBean.setBookingID(getBookingID());
 			preparedStatement.setInt(1, bookingBean.getBookingID());
-			preparedStatement.setString(2, bookingBean.getRoomID());
-			preparedStatement.setString(3, bookingBean.getUserID());
+			preparedStatement.setInt(2, bookingBean.getRoomID());
+			preparedStatement.setInt(3, bookingBean.getUserID());
 			preparedStatement.setDate(4, Date.valueOf(bookingBean.getBookedFrom()));
 			preparedStatement.setDate(5, Date.valueOf(bookingBean.getBookedTo()));
 			preparedStatement.setInt(6, bookingBean.getNumAdults());
@@ -212,19 +210,24 @@ public class CustomerDao implements ICustomerDao {
 	}
 
 	@Override
-	public List<RoomBean> searchAvailableRooms() throws BookingException {
+	public List<RoomBean> searchAvailableRooms(String city) throws BookingException {
 		//TODO change the query and function
 		List<RoomBean> roomList = new ArrayList<RoomBean>();
 		myLogger.info("Execution in searchAvailableRooms()");
-		String query = "SELECT * FROM roomdetails where availability='T'";
+		
+		ResultSet resultSet=null;
+		String query = "SELECT * FROM roomdetails where availability='T' and hotel_id in (select hotel_id from hotels where city= ?) ";
 		try(
-			Statement statement = connect.createStatement();
-			ResultSet resultSet = statement.executeQuery(query);
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+				
 		){
+			preparedStatement.setString(1, city); 
+			resultSet = preparedStatement.executeQuery();
 			myLogger.info("Query Execution : " + query);
+			
 			while(resultSet.next()){
-				String roomId = resultSet.getString("room_Id");
-				String hotelId = resultSet.getString("hotel_Id");
+				int roomId = resultSet.getInt("room_Id");
+				int hotelId = resultSet.getInt("hotel_Id");
 				String roomNumber = resultSet.getString("room_No");
 				String roomType = resultSet.getString("room_type");
 				float perNightRate = resultSet.getFloat("per_night_rate");

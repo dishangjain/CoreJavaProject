@@ -106,7 +106,7 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public List<RoomBean> searchAvailableRooms() throws BookingException {
-		return dao.searchAvailableRooms();
+	public List<RoomBean> searchAvailableRooms(String city) throws BookingException {
+		return dao.searchAvailableRooms(city);
 	}
 }

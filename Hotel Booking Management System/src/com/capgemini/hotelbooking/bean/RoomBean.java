@@ -3,14 +3,14 @@ package com.capgemini.hotelbooking.bean;
 
 public class RoomBean {
 	private int hotelID;
-	private String roomID;
+	private int roomID;
 	private String roomNumber;
 	private String roomType;
 	private float perNightRate;
 	private boolean available;
 	private String photo;
 	
-	public RoomBean(int hotelID, String roomID, String roomNumber,
+	public RoomBean(int hotelID, int roomID, String roomNumber,
 			String roomType, float perNightRate, boolean availability,
 			String photo) {
 		super();
@@ -29,10 +29,10 @@ public class RoomBean {
 	public void setHotelID(int hotelID) {
 		this.hotelID = hotelID;
 	}
-	public String getRoomID() {
+	public int getRoomID() {
 		return roomID;
 	}
-	public void setRoomID(String roomID) {
+	public void setRoomID(int roomID) {
 		this.roomID = roomID;
 	}
 	public String getRoomNumber() {

@@ -213,4 +213,26 @@ public class CommonDao implements ICommonDao {
 		return userBean.getUserID();
 	}
 
+	@Override
+	public List<String> retrieveUserNames() throws BookingException {
+		List<String> userNameList = new ArrayList<String>();
+		myLogger.info("Execution in retrieveUserNames()");
+		String query = "SELECT user_name FROM users";
+		try(
+			Statement statement = connect.createStatement();
+			ResultSet resultSet = statement.executeQuery(query);
+		){
+			myLogger.info("Query Execution : " + query);
+			while(resultSet.next()){
+				String userName = resultSet.getString("user_name");
+				
+				userNameList.add(userName);
+			}
+		} catch (SQLException e) {
+			myLogger.error("Exception from retrieveHotels()", e);
+			throw new BookingException("Problem in retrieving data.", e);
+		}
+		return userNameList;
+	}
+
 }

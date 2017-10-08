@@ -236,10 +236,10 @@ public class AdminDao implements IAdminDao {
 
 	@Override
 	public List<BookingBean> viewBookingsOfHotel(int hotelID) throws BookingException {
-		//TODO Change the query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
-		myLogger.info("Execution in getBookingsOfHotel()");
-		String query = "SELECT * FROM bookingdetails WHERE hotelID = ?";
+		myLogger.info("Execution in viewBookingsOfHotel()");
+		String query = "SELECT * FROM bookingdetails b WHERE b.room_id in (SELECT r.room_id from roomdetails r "
+				+ "WHERE r.hotel_id = ?)";
 		ResultSet resultSet = null;
 		
 		try(
@@ -250,20 +250,20 @@ public class AdminDao implements IAdminDao {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()){
-				int bookingID = Integer.parseInt(resultSet.getString("BOOKINGID"));
-				int userID = resultSet.getInt("USERID");
-				int roomID = resultSet.getInt("ROOMID");
-				int numAdults = resultSet.getInt("NUMADULTS");
-				int numChildren = resultSet.getInt("NUMCHILDREN");
+				int bookingID = Integer.parseInt(resultSet.getString("BOOKING_ID"));
+				int userID = resultSet.getInt("USER_ID");
+				int roomID = resultSet.getInt("ROOM_ID");
+				int numAdults = resultSet.getInt("NO_OF_ADULTS");
+				int numChildren = resultSet.getInt("NO_OF_CHILDREN");
 				float amount = resultSet.getFloat("AMOUNT");
-				LocalDate bookedFrom = resultSet.getDate("BOOKEDFROM").toLocalDate();
-				LocalDate bookedTo = resultSet.getDate("BOOKEDTO").toLocalDate();
+				LocalDate bookedFrom = resultSet.getDate("BOOKED_FROM").toLocalDate();
+				LocalDate bookedTo = resultSet.getDate("BOOKED_TO").toLocalDate();
 				
 				bookingList.add(new BookingBean(bookingID, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo));
 			}
 			
 		} catch (SQLException e) {
-			myLogger.error("Exception from getBookingsOfHotel()", e);
+			myLogger.error("Exception from viewBookingsOfHotel()", e);
 			throw new BookingException("Problem in retrieving data.", e);
 		}
 		return bookingList;
@@ -271,10 +271,9 @@ public class AdminDao implements IAdminDao {
 
 	@Override
 	public List<BookingBean> viewBookingsOfDate(LocalDate localDate) throws BookingException {
-		//TODO Change the query and function
 		List<BookingBean> bookingList = new ArrayList<BookingBean>();
 		myLogger.info("Execution in getBookingsOfDate()");
-		String query = "SELECT * FROM bookingdetails WHERE bookedFrom = TO_DATE(?)";
+		String query = "SELECT * FROM bookingdetails WHERE ? BETWEEN BOOKED_FROM AND BOOKED_TO";
 		ResultSet resultSet = null;
 		
 		try(
@@ -287,14 +286,14 @@ public class AdminDao implements IAdminDao {
 			resultSet = preparedStatement.executeQuery();
 			
 			while(resultSet.next()){
-				int bookingID = resultSet.getInt("BOOKINGID");
-				int userID = resultSet.getInt("USERID");
-				int roomID = resultSet.getInt("ROOMID");
-				int numAdults = resultSet.getInt("NUMADULTS");
-				int numChildren = resultSet.getInt("NUMCHILDREN");
+				int bookingID = resultSet.getInt("BOOKING_ID");
+				int userID = resultSet.getInt("USER_ID");
+				int roomID = resultSet.getInt("ROOM_ID");
+				int numAdults = resultSet.getInt("NO_OF_ADULTS");
+				int numChildren = resultSet.getInt("NO_OF_CHILDREN");
 				float amount = resultSet.getFloat("AMOUNT");
-				LocalDate bookedFrom = resultSet.getDate("BOOKEDFROM").toLocalDate();
-				LocalDate bookedTo = resultSet.getDate("BOOKEDTO").toLocalDate();
+				LocalDate bookedFrom = resultSet.getDate("BOOKED_FROM").toLocalDate();
+				LocalDate bookedTo = resultSet.getDate("BOOKED_TO").toLocalDate();
 				
 				bookingList.add(new BookingBean(bookingID, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo));
 			}
@@ -370,8 +369,38 @@ public class AdminDao implements IAdminDao {
 	}
 
 	@Override
-	public List<UserBean> viewGuestList() throws BookingException {
-		// TODO Do the implementation
-		return null;
+	public List<UserBean> viewGuestList(int hotelID) throws BookingException {
+		List<UserBean> bookingList = new ArrayList<UserBean>();
+		myLogger.info("Execution in viewGuestList()");
+		String query = "SELECT * FROM users u WHERE u.user_id in (SELECT b.user_id FROM bookingdetails b "
+				+ "WHERE b.room_id in (SELECT r.room_id FROM roomdetails r WHERE r.hotel_id = ?))";
+		ResultSet resultSet = null;
+		
+		try(
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+		){
+			preparedStatement.setInt(1, hotelID);
+						
+			myLogger.info("Query Execution : " + query);
+			resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()){
+				String userName = resultSet.getString("USER_NAME");
+				int userID = resultSet.getInt("USER_ID");
+				String role = resultSet.getString("ROLE");
+				String password = "";
+				String mobileNumber = resultSet.getString("MOBILE_NO");
+				String address = resultSet.getString("ADDRESS");
+				String email = resultSet.getString("EMAIL");
+				String phoneNumber = resultSet.getString("PHONE");
+				
+				bookingList.add(new UserBean(userID, password, role, userName, mobileNumber, address, email, phoneNumber));
+			}
+			
+		} catch (SQLException e) {
+			myLogger.error("Exception from viewGuestList()", e);
+			throw new BookingException("Problem in retrieving data.", e);
+		}
+		return bookingList;
 	}
 }

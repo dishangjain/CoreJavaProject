@@ -8,14 +8,15 @@ import org.apache.log4j.Logger;
 import com.capgemini.hotelbooking.bean.BookingBean;
 import com.capgemini.hotelbooking.bean.HotelBean;
 import com.capgemini.hotelbooking.bean.RoomBean;
+import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.dao.AdminDao;
 import com.capgemini.hotelbooking.dao.IAdminDao;
 import com.capgemini.hotelbooking.exception.BookingException;
 
 public class AdminService implements IAdminService{
+	IAdminDao dao;
+	
 	private static String hotelIDPattern = "[0-9]{1,4}";
-	private static String cityPattern ="[A-Z][A-Z a-z]*";
-	private static String numAdultPattern= "[0-9]";
 	private static String amountPattern= "[0-9]*";
 	private static String roomIDPattern = "[0-9]{1,4}";
 	private static String roomNumberPattern = "[0-9]{1,3}";
@@ -23,7 +24,12 @@ public class AdminService implements IAdminService{
 	private static String perNightRatePattern = "[1-9][0-9]{2,10}";
 	private static String availablePattern = "(true|false|True|False|T|F)";
 	private static String photoPattern ="[A-Za-z 0-9]*[.](png|jpeg|gif)";
-	IAdminDao dao;
+	private static String mobileNumberPattern = "[7-9][0-9]{9}";
+	private static String ratingPattern = "[0-4][.][0-9]";
+	private static String emailPattern = "[A-Z a-z]*[@][A-Z a-z]*[.](com|org|in|co.in)";
+	private static String faxPattern = "[0-9]{6}";
+	private static String cityPattern = "[A-Z][A-Z a-z]*";
+	private static String dateStringPattern = "(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}";
 	
 	static Logger myLogger = Logger.getLogger("myLogger");
 	
@@ -32,7 +38,25 @@ public class AdminService implements IAdminService{
 		dao = new AdminDao();
 	}
 	
-	/*private static boolean isGreaterThanEqual(LocalDate localDate1,LocalDate localDate2)
+	/*public static boolean validateDate(String dateString){
+		boolean flag = false;
+		if(dateString.matches(datePattern))
+		{
+			flag = true;
+		}
+		int year = Integer.parseInt(dateString.substring(0, 4));
+		int month = Integer.parseInt(dateString.substring(5, 7));
+		int date = Integer.parseInt(dateString.substring(8, 10));
+		if(month > 12 || month <= 0 || date > 31 || date <= 0){
+			flag = false;
+		}
+		if(flag == true){
+			flag = isGreaterThanEqual(LocalDate.of(year, month, date),LocalDate.now());
+		}
+		return flag;
+	}
+	
+	private static boolean isGreaterThanEqual(LocalDate localDate1,LocalDate localDate2)
 	{
 		int diffYears = Math.abs(localDate1.getYear() - localDate2.getYear());
 		int diffMonths = Math.abs(localDate1.getMonthValue() - localDate2.getMonthValue());
@@ -51,17 +75,6 @@ public class AdminService implements IAdminService{
 		}
 	}*/
 	
-
-
-	public static boolean validateAdults(String numAdults){
-		boolean flag = false;
-		if(numAdults.matches(numAdultPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
 	public static boolean validateAmount(String amount){
 		boolean flag = false;
 		if(amount.matches(amountPattern))
@@ -70,9 +83,6 @@ public class AdminService implements IAdminService{
 		}
 		return flag;
 	}
-	
-	
-
 	
 	public static boolean validateCity(String city){
 		boolean flag = false;
@@ -147,26 +157,59 @@ public class AdminService implements IAdminService{
 		}
 		return flag;
 	}
-
 	
-	/*public static boolean validateDate(String dateString){
+	public static boolean validateMobileNumber(String primaryPhone) {
 		boolean flag = false;
-		if(dateString.matches(datePattern))
+		if(primaryPhone.matches(mobileNumberPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateRating(String rating) {
+		boolean flag = false;
+		if(rating.matches(ratingPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateEmail(String email){
+		boolean flag = false;
+		if(email.matches(emailPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateFax(String fax){
+		boolean flag = false;
+		if(fax.matches(faxPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateDate(String dateString){
+		boolean flag = false;
+		if(dateString.matches(dateStringPattern))
 		{
 			flag = true;
 		}
 		int year = Integer.parseInt(dateString.substring(0, 4));
 		int month = Integer.parseInt(dateString.substring(5, 7));
 		int date = Integer.parseInt(dateString.substring(8, 10));
-		if(month > 12 || month <= 0 || date > 31 || date <= 0){
+		if(month > 12 || month <= 0 || date > 31 || date <= 0 || year < 0){
 			flag = false;
 		}
-		if(flag == true){
-			flag = isGreaterThanEqual(LocalDate.of(year, month, date),LocalDate.now());
-		}
+		
 		return flag;
-	}*/
-
+	}
+	
 	@Override
 	public int addHotelDetails(HotelBean hotelBean) throws BookingException {
 		return dao.addHotelDetails(hotelBean);
@@ -208,5 +251,9 @@ public class AdminService implements IAdminService{
 	public boolean deleteRoomDetails(int roomID) throws BookingException {
 		return dao.deleteRoomDetails(roomID);
 	}
-	
+
+	@Override
+	public List<UserBean> viewGuestList(int hotelID) throws BookingException {
+		return dao.viewGuestList(hotelID);
+	}
 }

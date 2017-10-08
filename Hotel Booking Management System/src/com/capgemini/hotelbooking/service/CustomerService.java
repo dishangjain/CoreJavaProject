@@ -11,19 +11,19 @@ import com.capgemini.hotelbooking.dao.ICustomerDao;
 import com.capgemini.hotelbooking.exception.BookingException;
 
 public class CustomerService implements ICustomerService {
-private ICustomerDao dao;
+	private ICustomerDao dao;
 
 	
 	private static String userIDPattern = "[0-9]{1,4}";
 	private static String mobileNumberPattern = "[7-9][0-9]{9}";
 	private static String emailPattern = "[A-Z a-z]*[@][A-Z a-z]*[.](com|org|in|co.in)";
-	private static String phoneNumberPattern = "[0-9]{10}";
-	
-	private static String dateStringPattern = "[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])";
+	private static String dateStringPattern = "(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}";
 	private static String faxPattern = "[0-9]{6}";
+	private static String cityPattern = "[A-Z][A-Z a-z]*";
+	private static String roomIDPattern = "[0-9]{1,4}";
+	private static String numAdultPattern= "[0-9]{1,2}";
+	private static String numChildrenPattern= "[0-9]{1,2}";
 
-	
-	
 	static Logger myLogger = Logger.getLogger("myLogger");
 	
 	public CustomerService() throws BookingException {
@@ -31,7 +31,7 @@ private ICustomerDao dao;
 		dao = new CustomerDao();
 	}
 	
-/*	private static boolean isGreaterThanEqual(LocalDate localDate1,LocalDate localDate2)
+	/*private static boolean isGreaterThanEqual(LocalDate localDate1,LocalDate localDate2)
 	{
 		int diffYears = Math.abs(localDate1.getYear() - localDate2.getYear());
 		int diffMonths = Math.abs(localDate1.getMonthValue() - localDate2.getMonthValue());
@@ -50,8 +50,43 @@ private ICustomerDao dao;
 		}
 	}*/
 	
+	public static boolean validateRoomID(String roomID){
+		boolean flag = false;
+		if(roomID.matches(roomIDPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
 	
-	public static boolean validateuserID(String userID){
+	public static boolean validateCity(String city){
+		boolean flag = false;
+		if(city.matches(cityPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateNumAdults(String numAdults){
+		boolean flag = false;
+		if(numAdults.matches(numAdultPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateNumChildren(String numChildren){
+		boolean flag = false;
+		if(numChildren.matches(numChildrenPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateUserID(String userID){
 		boolean flag = false;
 		if(userID.matches(userIDPattern))
 		{
@@ -60,7 +95,7 @@ private ICustomerDao dao;
 		return flag;
 	}
 	
-	public static boolean validatefax(String fax){
+	public static boolean validateFax(String fax){
 		boolean flag = false;
 		if(fax.matches(faxPattern))
 		{
@@ -69,7 +104,7 @@ private ICustomerDao dao;
 		return flag;
 	}
 	
-	public static boolean validatemobileNumber(String mobileNumber){
+	public static boolean validateMobileNumber(String mobileNumber){
 		boolean flag = false;
 		if(mobileNumber.matches(mobileNumberPattern))
 		{
@@ -78,22 +113,9 @@ private ICustomerDao dao;
 		return flag;
 	}
 	
-	public static boolean validateemail(String email){
+	public static boolean validateEmail(String email){
 		boolean flag = false;
 		if(email.matches(emailPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
-
-	
-
-	
-	public static boolean validatephoneNumber(String phoneNumber){
-		boolean flag = false;
-		if(phoneNumber.matches(phoneNumberPattern))
 		{
 			flag = true;
 		}

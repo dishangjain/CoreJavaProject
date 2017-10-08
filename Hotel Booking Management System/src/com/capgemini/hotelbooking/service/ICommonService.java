@@ -12,4 +12,5 @@ public interface ICommonService {
 	public UserBean login(String username, String password) throws BookingException;
 	List<HotelBean> retrieveHotels() throws BookingException;
 	List<RoomBean> retrieveRooms() throws BookingException;
+	List<String> retrieveUserNames() throws BookingException;
 }

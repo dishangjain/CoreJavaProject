@@ -18,5 +18,5 @@ public interface IAdminDao {
 	public boolean deleteRoomDetails(int roomID) throws BookingException;
 	public List<BookingBean> viewBookingsOfHotel(int hotelID) throws BookingException;
 	public List<BookingBean> viewBookingsOfDate(LocalDate date) throws BookingException;
-	public List<UserBean> viewGuestList() throws BookingException;
+	List<UserBean> viewGuestList(int hotelID) throws BookingException;
 }

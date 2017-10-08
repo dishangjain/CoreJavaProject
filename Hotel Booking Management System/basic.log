@@ -1,187 +1,3 @@
-2017-09-01 14:26:10,634 INFO [myLogger] - Service: Dao injected.
-2017-09-01 14:26:12,045 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 14:26:12,045 INFO [myLogger] - Execution in retrieveTruckDetails()
-2017-09-01 14:26:12,216 INFO [myLogger] - Query Execution : Select * from TruckDetails
-2017-09-01 14:27:00,184 INFO [myLogger] - Service: Dao injected.
-2017-09-01 14:27:01,538 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 14:27:01,538 INFO [myLogger] - Execution in retrieveTruckDetails()
-2017-09-01 14:27:01,741 INFO [myLogger] - Query Execution : Select * from TruckDetails
-2017-09-01 14:27:40,276 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 14:27:40,899 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 14:27:40,947 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 14:27:40,963 INFO [myLogger] - New Entry -> Booking ID : 1000
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 3
-Date Of Transport : 2017-12-28
-2017-09-01 14:28:39,344 INFO [myLogger] - Service: Dao injected.
-2017-09-01 14:28:40,476 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 14:28:40,476 INFO [myLogger] - Execution in retrieveTruckDetails()
-2017-09-01 14:28:40,639 INFO [myLogger] - Query Execution : Select * from TruckDetails
-2017-09-01 14:29:48,042 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 14:29:48,428 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 14:29:48,428 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 14:29:48,428 INFO [myLogger] - New Entry -> Booking ID : 1001
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:48:41,512 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:48:44,886 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:48:45,136 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:48:45,760 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:48:46,151 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:48:46,151 INFO [myLogger] - New Entry -> Booking ID : 1002
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:48:46,182 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:48:46,307 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:48:46,307 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:48:46,307 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:48:46,307 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:48:46,323 INFO [myLogger] - New Entry -> Booking ID : 1003
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:49:14,167 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:49:15,386 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:49:15,401 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:49:15,745 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:49:15,823 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:49:15,839 INFO [myLogger] - New Entry -> Booking ID : 1004
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:49:15,839 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:49:15,901 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:49:15,901 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:49:15,901 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:49:15,901 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:49:15,901 INFO [myLogger] - New Entry -> Booking ID : 1005
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:53:11,159 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:53:13,612 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:53:13,628 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:53:14,252 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:53:14,393 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:53:14,393 INFO [myLogger] - New Entry -> Booking ID : 1007
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:53:14,409 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:53:14,456 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:53:14,456 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:53:14,456 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:53:14,456 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:53:14,471 INFO [myLogger] - New Entry -> Booking ID : 1008
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:53:52,221 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:53:53,127 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:53:53,143 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:53:53,487 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:53:53,580 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:53:53,580 INFO [myLogger] - New Entry -> Booking ID : 1010
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-01 18:53:53,580 INFO [myLogger] - Service: Dao injected.
-2017-09-01 18:53:53,627 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-01 18:53:53,627 INFO [myLogger] - Execution in bookTrucks()
-2017-09-01 18:53:53,627 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-01 18:53:53,627 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-01 18:53:53,627 INFO [myLogger] - New Entry -> Booking ID : 1011
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-02 12:27:50,151 INFO [myLogger] - Service: Dao injected.
-2017-09-02 12:27:53,275 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-02 12:27:53,291 INFO [myLogger] - Execution in bookTrucks()
-2017-09-02 12:27:53,635 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-02 12:27:53,760 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-02 12:27:53,791 INFO [myLogger] - New Entry -> Booking ID : 1012
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-02 12:27:53,869 INFO [myLogger] - Service: Dao injected.
-2017-09-02 12:27:53,916 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-02 12:27:53,916 INFO [myLogger] - Execution in bookTrucks()
-2017-09-02 12:27:53,916 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-02 12:27:53,916 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-02 12:27:53,916 INFO [myLogger] - New Entry -> Booking ID : 1013
-Customer ID : A111111
-Customer Mobile : 7721849377
-Truck ID : 1000
-No Of Trucks : 2
-Date Of Transport : 2017-12-12
-2017-09-05 03:12:03,941 INFO [myLogger] - Service: Dao injected.
-2017-09-05 03:12:07,263 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-05 03:12:07,263 INFO [myLogger] - Execution in retrieveTruckDetails()
-2017-09-05 03:12:08,013 INFO [myLogger] - Query Execution : Select * from TruckDetails
-2017-09-05 03:12:58,358 INFO [myLogger] - Service: Dao injected.
-2017-09-05 03:12:59,200 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-05 03:12:59,200 INFO [myLogger] - Execution in retrieveTruckDetails()
-2017-09-05 03:12:59,353 INFO [myLogger] - Query Execution : Select * from TruckDetails
-2017-09-05 03:13:44,063 INFO [myLogger] - Service: Dao injected.
-2017-09-05 03:13:45,042 INFO [myLogger] - Connection procured in TruckDao.
-2017-09-05 03:13:45,042 INFO [myLogger] - Execution in retrieveTruckDetails()
-2017-09-05 03:13:45,308 INFO [myLogger] - Query Execution : Select * from TruckDetails
-2017-09-05 03:14:12,924 INFO [myLogger] - Execution in bookTrucks()
-2017-09-05 03:14:13,186 INFO [myLogger] - Query Execution : SELECT booking_id_seq.NEXTVAL FROM DUAL
-2017-09-05 03:14:13,510 INFO [myLogger] - Query Execution : insert into BOOKINGDETAILS(BookingId, CustId, CustMobile, TruckId, NoOfTrucks, DateOfTransport) values (?, ?, ?, ?, ?, TO_DATE(?))
-2017-09-05 03:14:13,849 INFO [myLogger] - New Entry -> Booking ID : 1020
-Customer ID : A111111
-Customer Mobile : 2442323434
-Truck ID : 1001
-No Of Trucks : 3
-Date Of Transport : 2014-03-23
-2017-10-07 13:13:06,951 INFO [myLogger] - Service: Dao injected.
-2017-10-07 13:13:11,494 INFO [myLogger] - Connection procured in CommonDao.
-2017-10-07 13:13:11,494 INFO [myLogger] - Execution in Login()
-2017-10-07 13:13:11,970 INFO [myLogger] - Query Execution : SELECT username,password FROM users WHERE username=? AND password=?
-2017-10-07 13:13:12,093 ERROR [myLogger] - Exception from Login()
-java.sql.SQLSyntaxErrorException: ORA-00904: "USERNAME": invalid identifier
-
-	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:452)
-	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:400)
-	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:884)
-	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:471)
-	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:199)
-	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:535)
-	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:238)
-	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:1196)
-	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1444)
-	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1662)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:4364)
-	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:4445)
-	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:6268)
-	at com.capgemini.hotelbooking.dao.CommonDao.login(CommonDao.java:58)
-	at com.capgemini.hotelbooking.service.CommonService.login(CommonService.java:23)
-	at com.capgemini.hotelbooking.ui.Client.main(Client.java:32)
 2017-10-07 13:13:55,271 INFO [myLogger] - Service: Dao injected.
 2017-10-07 13:13:56,723 INFO [myLogger] - Connection procured in CommonDao.
 2017-10-07 13:13:56,723 INFO [myLogger] - Execution in Login()
@@ -1056,3 +872,303 @@ Email : jaindishang24@gmail.com
 2017-10-08 00:21:46,640 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
 2017-10-08 00:21:46,643 INFO [myLogger] - Service: Dao injected.
 2017-10-08 00:21:46,674 INFO [myLogger] - Connection procured in CustomerDao.
+2017-10-08 12:45:52,620 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:45:55,434 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:45:55,438 INFO [myLogger] - Execution in Login()
+2017-10-08 12:45:55,690 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:45:55,811 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:45:55,831 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:48:18,772 INFO [myLogger] - Execution in addHotelDetails()
+2017-10-08 12:48:18,772 INFO [myLogger] - Query Execution : SELECT hotel_id_seq.NEXTVAL FROM DUAL
+2017-10-08 12:48:18,800 INFO [myLogger] - Query Execution : insert into HOTELS(HOTEL_ID, CITY, HOTEL_NAME, ADDRESS, DESCRIPTION, AVG_RATE_PER_NIGHT, PHONE_NO1,PHONE_NO2, RATING, EMAIL, FAX) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-10-08 12:48:18,804 INFO [myLogger] - New Entry -> Hotel ID : 1
+City : Mumbai
+Hotel Name : Taj
+Address : C.S.T
+Description : High-Standards
+Average Rate per Night : 4000.0
+Phone Number 1 : 8888888888
+Phone Number 2 : 7654678532
+Rating : 4.3
+Fax : 345434
+2017-10-08 12:48:18,808 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:48:18,832 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:49:18,069 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:49:18,073 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:50:41,153 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:50:42,954 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:50:42,954 INFO [myLogger] - Execution in Login()
+2017-10-08 12:50:43,230 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:50:43,341 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:50:43,361 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:50:45,114 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:50:45,138 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:51:16,072 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:51:17,708 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:51:17,708 INFO [myLogger] - Execution in Login()
+2017-10-08 12:51:18,013 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:51:18,132 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:51:18,153 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:51:24,119 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:51:24,147 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:51:49,596 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:51:51,264 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:51:51,264 INFO [myLogger] - Execution in Login()
+2017-10-08 12:51:51,537 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:51:51,668 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:51:51,688 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:51:52,784 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:51:52,814 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:52:20,716 INFO [myLogger] - Execution in updateHotelDetails()
+2017-10-08 12:52:20,716 INFO [myLogger] - Query Execution : UPDATE hotels SET CITY=? WHERE HOTEL_ID=?
+2017-10-08 12:52:20,728 INFO [myLogger] - Hotel Table Updated.
+Hotel ID : 1
+Column Name : CITYColumn Value : Pune
+2017-10-08 12:52:20,728 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:52:20,756 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:52:31,517 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:52:31,518 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:53:05,837 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:53:07,574 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:53:07,574 INFO [myLogger] - Execution in Login()
+2017-10-08 12:53:07,843 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:53:07,954 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:53:07,974 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:53:10,695 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:53:10,728 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:53:34,141 INFO [myLogger] - Execution in deleteHotelDetails()
+2017-10-08 12:53:34,141 INFO [myLogger] - Query Execution : DELETE FROM hotels WHERE hotel_ID=?
+2017-10-08 12:53:34,145 INFO [myLogger] - 1 row deleted from hotels.
+Hotel ID of deleted row : 1
+2017-10-08 12:53:34,145 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:53:34,172 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:54:47,549 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:54:49,191 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:54:49,195 INFO [myLogger] - Execution in Login()
+2017-10-08 12:54:49,459 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:54:49,572 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:54:49,592 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:54:55,877 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:54:55,901 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:54:55,901 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:54:55,926 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:55:02,551 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:55:02,551 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:55:02,555 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:55:02,576 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:56:55,143 INFO [myLogger] - Execution in addHotelDetails()
+2017-10-08 12:56:55,143 INFO [myLogger] - Query Execution : SELECT hotel_id_seq.NEXTVAL FROM DUAL
+2017-10-08 12:56:55,143 INFO [myLogger] - Query Execution : insert into HOTELS(HOTEL_ID, CITY, HOTEL_NAME, ADDRESS, DESCRIPTION, AVG_RATE_PER_NIGHT, PHONE_NO1,PHONE_NO2, RATING, EMAIL, FAX) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-10-08 12:56:55,147 INFO [myLogger] - New Entry -> Hotel ID : 2
+City : Pune
+Hotel Name : Taj
+Address : C.S.T
+Description : High-Standards
+Average Rate per Night : 4000.5
+Phone Number 1 : 8888888888
+Phone Number 2 : 9235675424
+Rating : 4.5
+Fax : 345436
+2017-10-08 12:56:55,147 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:56:55,173 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:57:43,580 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:57:43,584 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 12:58:12,161 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:58:13,814 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 12:58:13,815 INFO [myLogger] - Execution in Login()
+2017-10-08 12:58:14,069 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 12:58:14,181 INFO [myLogger] - Service: Dao injected.
+2017-10-08 12:58:14,201 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 12:58:15,407 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 12:58:15,434 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:00:09,144 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:00:10,777 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 13:00:10,777 INFO [myLogger] - Execution in Login()
+2017-10-08 13:00:11,037 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 13:00:11,167 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:00:11,187 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:00:14,660 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:00:14,683 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:00:41,155 INFO [myLogger] - Execution in updateHotelDetails()
+2017-10-08 13:00:41,155 INFO [myLogger] - Query Execution : UPDATE hotels SET CITY=? WHERE HOTEL_ID=?
+2017-10-08 13:00:41,155 ERROR [myLogger] - System Error
+2017-10-08 13:00:52,998 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:00:54,750 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 13:00:54,750 INFO [myLogger] - Execution in Login()
+2017-10-08 13:00:55,003 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 13:00:55,137 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:00:55,157 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:01:22,047 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:01:22,071 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:01:28,118 INFO [myLogger] - Execution in deleteHotelDetails()
+2017-10-08 13:01:28,118 INFO [myLogger] - Query Execution : DELETE FROM hotels WHERE hotel_ID=?
+2017-10-08 13:01:28,118 ERROR [myLogger] - System Error
+2017-10-08 13:01:37,959 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:01:39,660 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 13:01:39,660 INFO [myLogger] - Execution in Login()
+2017-10-08 13:01:39,924 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 13:01:40,033 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:01:40,053 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:03:01,699 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:03:01,727 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:03:03,521 INFO [myLogger] - Execution in deleteHotelDetails()
+2017-10-08 13:03:03,521 INFO [myLogger] - Query Execution : DELETE FROM hotels WHERE hotel_ID=?
+2017-10-08 13:03:03,525 INFO [myLogger] - 1 row deleted from hotels.
+Hotel ID of deleted row : 2
+2017-10-08 13:03:03,525 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:03:03,556 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:03:07,615 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:03:07,615 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:03:07,615 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:03:07,644 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:06:11,771 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:06:12,928 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 13:06:12,928 INFO [myLogger] - Execution in Login()
+2017-10-08 13:06:13,104 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 13:06:13,176 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:06:13,193 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:06:54,584 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:06:54,602 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:06:54,602 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:06:54,621 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:17:40,705 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:17:41,850 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 13:17:41,850 INFO [myLogger] - Execution in Login()
+2017-10-08 13:17:42,016 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 13:17:42,089 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:17:42,105 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:17:45,354 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:17:45,370 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:17:45,370 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:17:45,387 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:19:11,186 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:19:12,313 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 13:19:12,313 INFO [myLogger] - Execution in Login()
+2017-10-08 13:19:12,484 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 13:19:12,557 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:19:12,574 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 13:19:21,776 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 13:19:21,792 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 13:19:21,792 INFO [myLogger] - Service: Dao injected.
+2017-10-08 13:19:21,809 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:12:42,555 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:12:43,741 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:12:43,741 INFO [myLogger] - Execution in Login()
+2017-10-08 14:12:43,908 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:12:43,984 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:12:44,002 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:05,950 INFO [myLogger] - Execution in addHotelDetails()
+2017-10-08 14:14:05,951 INFO [myLogger] - Query Execution : SELECT hotel_id_seq.NEXTVAL FROM DUAL
+2017-10-08 14:14:05,967 INFO [myLogger] - Query Execution : insert into HOTELS(HOTEL_ID, CITY, HOTEL_NAME, ADDRESS, DESCRIPTION, AVG_RATE_PER_NIGHT, PHONE_NO1,PHONE_NO2, RATING, EMAIL, FAX) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-10-08 14:14:05,970 INFO [myLogger] - New Entry -> Hotel ID : 3
+City : Mumbai
+Hotel Name : Taj
+Address : C.S.T
+Description : High-Standards
+Average Rate per Night : 4000.0
+Phone Number 1 : 8888888888
+Phone Number 2 : 9642454363
+Rating : 4.9
+Fax : 345434
+2017-10-08 14:14:05,970 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:05,992 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:14,153 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:14:14,155 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:14:14,155 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:14,172 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:26,384 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:14:26,385 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:14:28,033 INFO [myLogger] - Execution in deleteHotelDetails()
+2017-10-08 14:14:28,033 INFO [myLogger] - Query Execution : DELETE FROM hotels WHERE hotel_ID=?
+2017-10-08 14:14:28,036 INFO [myLogger] - 1 row deleted from hotels.
+Hotel ID of deleted row : 3
+2017-10-08 14:14:28,036 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:28,057 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:32,289 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:14:32,290 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:14:32,290 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:32,307 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:44,895 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:44,913 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:14:44,913 INFO [myLogger] - Execution in Login()
+2017-10-08 14:14:44,913 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:14:44,914 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:44,935 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:49,322 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:49,341 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:52,374 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:52,393 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:54,348 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:54,363 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:14:57,201 INFO [myLogger] - Execution in retrieveRooms()
+2017-10-08 14:14:57,205 INFO [myLogger] - Query Execution : SELECT * FROM roomdetails
+2017-10-08 14:14:57,205 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:14:57,222 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:15:06,843 INFO [myLogger] - Execution in retrieveRooms()
+2017-10-08 14:15:06,844 INFO [myLogger] - Query Execution : SELECT * FROM roomdetails
+2017-10-08 14:15:06,844 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:15:06,922 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:15:10,520 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:15:10,521 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:15:10,521 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:15:10,538 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:15:13,932 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:15:13,932 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:15:13,933 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:15:13,951 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:15:15,738 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:15:15,741 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:15:15,741 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:15:15,759 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:15:56,249 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:15:57,405 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:15:57,405 INFO [myLogger] - Execution in Login()
+2017-10-08 14:15:57,575 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:15:57,647 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:15:57,664 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:16:00,889 INFO [myLogger] - Execution in retrieveRooms()
+2017-10-08 14:16:00,907 INFO [myLogger] - Query Execution : SELECT * FROM roomdetails
+2017-10-08 14:16:00,907 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:16:00,925 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:17:43,536 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:17:44,662 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:17:44,662 INFO [myLogger] - Execution in Login()
+2017-10-08 14:17:44,866 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:17:44,940 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:17:44,957 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:17:46,516 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:17:46,533 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:17:53,443 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:17:53,460 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:19:02,507 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:19:03,698 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:19:03,698 INFO [myLogger] - Execution in Login()
+2017-10-08 14:19:03,874 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:19:03,948 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:19:03,965 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:19:09,242 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:19:09,262 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:19:14,886 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:19:14,907 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:19:17,385 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:19:17,405 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:42:10,733 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:42:11,894 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:42:11,894 INFO [myLogger] - Execution in Login()
+2017-10-08 14:42:12,068 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:42:12,140 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:42:12,159 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:42:13,259 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:42:13,275 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:42:13,275 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:42:13,295 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:43:29,939 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:43:31,099 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 14:43:31,099 INFO [myLogger] - Execution in Login()
+2017-10-08 14:43:31,273 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 14:43:31,347 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:43:31,364 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 14:43:33,089 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 14:43:33,105 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 14:43:33,106 INFO [myLogger] - Service: Dao injected.
+2017-10-08 14:43:33,123 INFO [myLogger] - Connection procured in AdminDao.

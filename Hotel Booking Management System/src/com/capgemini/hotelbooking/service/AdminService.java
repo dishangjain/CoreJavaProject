@@ -19,7 +19,7 @@ public class AdminService implements IAdminService{
 	private static String hotelIDPattern = "[0-9]{1,4}";
 	private static String roomIDPattern = "[0-9]{1,4}";
 	private static String roomNumberPattern = "[0-9]{1,3}";
-	private static String perNightRatePattern = "[1-9][0-9]{2,10}";
+	private static String perNightRatePattern = "[1-9][0-9]{2,10}[.][0-9]{1,}";
 	private static String photoPattern ="[A-Za-z 0-9]*[.](png|jpeg|gif)";
 	private static String mobileNumberPattern = "[7-9][0-9]{9}";
 	private static String ratingPattern = "[0-4][.][0-9]";

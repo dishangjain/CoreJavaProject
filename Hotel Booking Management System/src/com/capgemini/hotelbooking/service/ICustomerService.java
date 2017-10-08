@@ -10,4 +10,5 @@ public interface ICustomerService {
 	public int bookRoom(BookingBean bookingBean) throws BookingException;
 	public List<RoomBean> searchAvailableRooms(String city) throws BookingException;
 	public List<List<Object>> viewBookingStatus(int bookingId, int userId) throws BookingException;
+	public List<Object> getBookingIDs(int userId) throws BookingException;
 }

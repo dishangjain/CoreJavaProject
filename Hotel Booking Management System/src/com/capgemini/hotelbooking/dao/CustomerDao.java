@@ -1,5 +1,6 @@
 package com.capgemini.hotelbooking.dao;
 
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -46,7 +47,18 @@ public class CustomerDao implements ICustomerDao {
 			myLogger.error("Unable to generate booking ID.");
 		}
 		return bookingId;
-	}	
+	}
+	
+	private void updateAvailabililty(int roomID){
+		String query= "UPDATE ROOMDETAILS SET AVAILABILITY='F' where room_id=? ";
+		try(PreparedStatement preparedStatement = connect.prepareStatement(query);) {
+			preparedStatement.setInt(1, roomID);
+			int recsAffected=preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			myLogger.error("Unable to update availability of room");
+		}
+		
+	}
 
 	@Override
 	public int bookRoom(BookingBean bookingBean) throws BookingException {
@@ -59,13 +71,14 @@ public class CustomerDao implements ICustomerDao {
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
+				PreparedStatement preparedStatement1 = connect.prepareStatement(supportQuery);
 		){
-			preparedStatement.setInt(1, bookingBean.getRoomID());
+			preparedStatement1.setInt(1, bookingBean.getRoomID());
 			myLogger.info("Support query Execution : " + supportQuery);
-			ResultSet resultSet = preparedStatement.executeQuery();
+			ResultSet resultSet = preparedStatement1.executeQuery();
 			float perNightRate = 0;
 			while(resultSet.next()){
-				perNightRate = resultSet.getFloat("AMOUNT"); 
+				perNightRate = resultSet.getFloat("per_night_rate"); 
 			}
 			long numberOfDays = bookingBean.getBookedFrom().until(bookingBean.getBookedTo(), ChronoUnit.DAYS);
 			bookingBean.setAmount(numberOfDays * perNightRate);
@@ -92,6 +105,7 @@ public class CustomerDao implements ICustomerDao {
 							+ "\nNumber of adults : " + bookingBean.getNumAdults()
 							+ "\nNumber of children : " + bookingBean.getNumChildren()
 							+ "\nAmount : " + bookingBean.getAmount());
+				updateAvailabililty(bookingBean.getRoomID());
 			}
 			else{
 				myLogger.error("System Error");
@@ -112,7 +126,7 @@ public class CustomerDao implements ICustomerDao {
 		myLogger.info("Execution in viewBookingStatus()");
 		
 		String query = "SELECT r.room_no,b.booking_id,b.booked_from,b.booked_to FROM bookingdetails b,"
-				+ "roomretails r WHERE b.room_id=r.room_id AND b.booking_id = ? AND b.user_id = ? ";
+				+ "roomdetails r WHERE b.room_id=r.room_id AND b.booking_id = ? AND b.user_id = ? ";
 		ResultSet resultSet = null;
 		
 		try(
@@ -165,7 +179,7 @@ public class CustomerDao implements ICustomerDao {
 				String photo = resultSet.getString("photo");
 				
 				boolean availability = false;
-				if(availabilityString.equals('T')){
+				if(availabilityString.equals("T")){
 					availability = true;
 				}
 				else{
@@ -179,6 +193,26 @@ public class CustomerDao implements ICustomerDao {
 			throw new BookingException("Problem in retrieving data.", e);
 		}
 		return roomList;
+	}
+
+	@Override
+	public List<Object> getBookingIDs(int userId) throws BookingException {
+		List<Object> bookingIDs = new ArrayList<Object>(); 
+		String query = "SELECT BOOKING_ID FROM BOOKINGDETAILS where user_id=?";
+		myLogger.info("Query Execution : " + query);
+		try (PreparedStatement pstmt= connect.prepareStatement(query);)
+		{	
+			pstmt.setInt(1, userId); 
+			ResultSet resultSet = pstmt.executeQuery();
+			while(resultSet.next()){
+				int id = resultSet.getInt("booking_id");
+				bookingIDs.add(id);
+			}
+		} catch (SQLException e) {
+			myLogger.error("Exception from getBookingIDs()", e);
+			throw new BookingException("Problem in retrieving booking ids.", e);
+		}
+		return bookingIDs;
 	}
 
 }

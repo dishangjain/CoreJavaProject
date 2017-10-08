@@ -3,6 +3,7 @@ package com.capgemini.hotelbooking.test;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.time.Month;
 
 import org.junit.Test;
 import com.capgemini.hotelbooking.bean.BookingBean;
@@ -23,91 +24,90 @@ public class TestHotelBooking{
 		adminService = new AdminService();
 	}
 
-	/*@Test			//Test to Pass 
+	@Test			
 	public void testAddBookingDetailsPass(){
-		//Initialize the variables.
+		
 		int bookingID;
-		int roomID;
-		int userID;
-		int numAdults;
-		int numChildren;
-		float amount;
-		LocalDate bookedFrom;
-		LocalDate bookedTo;
-		BookingBean bookingBean = new BookingBean(10000, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
+		int roomID=1;
+		int userID=1;
+		int numAdults=1;
+		int numChildren=0;
+		float amount=9000;
+		LocalDate bookedFrom= LocalDate.of(2011, Month.JULY, 13);
+		LocalDate bookedTo= LocalDate.of(2011,Month.JULY , 15);
+		BookingBean bookingBean = new BookingBean(5, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
 		try {
 			bookingID=service.bookRoom(bookingBean);
-			assertEquals(0000, bookingID); //Enter the correct value here.
+			assertEquals(5, bookingID); 
 		} catch (BookingException e) {
 			
 			fail(e.getMessage());
 		}
 	}
 	
-	@Test			//Test to Fail
+	@Test			
 	public void testAddBookingDetailsFail(){	
-		//Initialize the variables.
+		
 		int bookingID;
-		int roomID;
-		int userID;
-		int numAdults;
-		int numChildren;
-		float amount;
-		LocalDate bookedFrom;
-		LocalDate bookedTo;
-		BookingBean bookingBean = new BookingBean(10000, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
+		int roomID=2;
+		int userID=1;
+		int numAdults=1;
+		int numChildren=0;
+		float amount=9000;
+		LocalDate bookedFrom= LocalDate.of(2011, Month.JULY, 13);;
+		LocalDate bookedTo=LocalDate.of(2011,Month.JULY , 15);;
+		BookingBean bookingBean = new BookingBean(7, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
 		try {
 			bookingID=service.bookRoom(bookingBean);
-			assertEquals(0000, bookingID); //Enter the wrong value here.
+			assertEquals(7, bookingID); 
 		} catch (BookingException e) {
 			
 			fail(e.getMessage());
 		}
 	}
-	@Test 		//Test to pass
+	@Test 		
     public void testAddHotelDetailsPass(){
 		
-		// Initialize the variables
 		int hotelID;
-		String city;
-		String hotelName;
-		String address;
-		String description;
-		float avgRatePerNight;
-		String phoneNumber1;
-		String phoneNumber2;
-		String rating;
-		String email;
-		String fax;
-		HotelBean hotelBean = new HotelBean(hotelID, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
+		String city="Pune";
+		String hotelName="Oberoi";
+		String address="anywhere";
+		String description="nice";
+		float avgRatePerNight=2000;
+		String phoneNumber1="7891234560";
+		String phoneNumber2="8991234560";
+		String rating="4.6";
+		String email="welcome@oberoi.com";
+		String fax="123456";
+		HotelBean hotelBean = new HotelBean(0, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
 		try {
 			hotelID = adminService.addHotelDetails(hotelBean);
-			assertEquals(0000, hotelID);  //Enter correct value to be checked
+			assertEquals(2, hotelID);  
 		} catch (BookingException e) {
 			fail(e.getMessage());
 		}
 	}
-	@Test		//Test to fail
+	@Test		
 	public void testAddHotelDetailsfail(){
-		// Initialize the variables
+		
 				int hotelID;
-				String city;
-				String hotelName;
-				String address;
-				String description;
-				float avgRatePerNight;
-				String phoneNumber1;
-				String phoneNumber2;
-				String rating;
-				String email;
-				String fax;
-				HotelBean hotelBean = new HotelBean(hotelID, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
+				String city="Delhi";
+				String hotelName="marriot";
+				String address="anywhere";
+				String description="cosly";
+				float avgRatePerNight=1500;
+				String phoneNumber1="9001234567";
+				String phoneNumber2="8001234567";
+				String rating="5";
+				String email="helloguests@gmail.com";
+				String fax="654321";
+				HotelBean hotelBean = new HotelBean(0, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
 				try {
 					hotelID = adminService.addHotelDetails(hotelBean);
-					assertEquals(0000, hotelID);  //Enter wrong value to be checked
+					assertEquals(4, hotelID);  
 				} catch (BookingException e) {
 					fail(e.getMessage());
 				}
-	}*/
+	}
 	
 }

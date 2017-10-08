@@ -13,7 +13,7 @@ import com.capgemini.hotelbooking.exception.BookingException;
 public class CustomerService implements ICustomerService {
 	private ICustomerDao dao;
 	
-	private static String dateStringPattern = "(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}";
+	private static String dateStringPattern = "(0[1-9]|1[0-9]|2[0-9]|3[0-1])-(0[1-9]|1[012])-[0-9]{4}";
 	private static String cityPattern = "[A-Z][A-Z a-z]*";
 	private static String roomIDPattern = "[0-9]{1,4}";
 	private static String numAdultPattern= "[0-9]{1,2}";
@@ -87,9 +87,9 @@ public class CustomerService implements ICustomerService {
 		{
 			flag = true;
 		}
-		int year = Integer.parseInt(dateString.substring(0, 4));
-		int month = Integer.parseInt(dateString.substring(5, 7));
-		int date = Integer.parseInt(dateString.substring(8, 10));
+		int year = Integer.parseInt(dateString.substring(6, 10));
+		int month = Integer.parseInt(dateString.substring(3, 5));
+		int date = Integer.parseInt(dateString.substring(0, 2));
 		if(month > 12 || month <= 0 || date > 31 || date <= 0 || year < 0){
 			flag = false;
 		}
@@ -110,6 +110,12 @@ public class CustomerService implements ICustomerService {
 	@Override
 	public List<RoomBean> searchAvailableRooms(String city) throws BookingException {
 		return dao.searchAvailableRooms(city);
+	}
+
+	@Override
+	public List<Object> getBookingIDs(int userId) throws BookingException {
+		
+		return dao.getBookingIDs(userId);
 	}
 	
 }

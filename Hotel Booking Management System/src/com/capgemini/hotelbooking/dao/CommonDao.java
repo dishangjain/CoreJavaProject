@@ -152,7 +152,7 @@ public class CommonDao implements ICommonDao {
 				String availabilityString = resultSet.getString("AVAILABILITY");
 				String photo = resultSet.getString("PHOTO");
 				boolean availability = false;
-				if(availabilityString == "T"){
+				if("T".equals(availabilityString)){
 					availability = true;
 				}
 				else{

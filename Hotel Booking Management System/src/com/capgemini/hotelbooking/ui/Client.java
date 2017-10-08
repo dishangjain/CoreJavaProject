@@ -586,10 +586,21 @@ public class Client {
 											
 											BookingBean bookingBean = new BookingBean(bookingID, roomID, userID, numAdults, numChildren, amount, parsedBookedFromDate, parsedBookedToDate);
 											bookingID = customerService.bookRoom(bookingBean);
+											if(bookingID>0){
+												System.out.println("Booking is Successful!!..Your booking ID is: "+bookingID);
+											}
+											else{
+												System.out.println("Booking failed");
+											}
 										}
 										break;
 									case 3:
-										int bookingId = 0;
+										List<Object>bookingIDs = customerService.getBookingIDs(userBean.getUserID());
+										int bookingId =0 ;
+										System.out.println("List of your booking IDs:");
+										System.out.println(bookingIDs);
+										System.out.println("Enter booking id :");
+										bookingId = scanner.nextInt();
 										List<List<Object>> bookingList = customerService.viewBookingStatus(bookingId,userBean.getUserID());
 										if(bookingList.size() > 0){
 											System.out.println("Your bookings are : \n");

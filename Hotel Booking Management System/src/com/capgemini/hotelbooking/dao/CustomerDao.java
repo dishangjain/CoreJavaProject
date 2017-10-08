@@ -1,12 +1,12 @@
 package com.capgemini.hotelbooking.dao;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 
 import com.capgemini.hotelbooking.bean.BookingBean;
 import com.capgemini.hotelbooking.bean.RoomBean;
-import com.capgemini.hotelbooking.bean.UserBean;
 import com.capgemini.hotelbooking.exception.BookingException;
 import com.capgemini.hotelbooking.util.ConnectionUtil;
 
@@ -47,105 +46,31 @@ public class CustomerDao implements ICustomerDao {
 			myLogger.error("Unable to generate booking ID.");
 		}
 		return bookingId;
-	}
-	
-	private int getUserID(){
-		int userId = 0;
-		String query = "SELECT user_id_seq.NEXTVAL FROM DUAL";
-		try
-		{
-			PreparedStatement preparedStatement = connect.prepareStatement(query);
-			myLogger.info("Query Execution : " + query);
-			ResultSet resultSet = preparedStatement.executeQuery();
-			if(resultSet.next())
-			{
-				userId = resultSet.getInt(1);
-			}
-		}
-		catch(SQLException e)
-		{
-			myLogger.error("Unable to generate user ID.");
-		}
-		return userId;
-	}
-	
-	private String generatePasswordHash(String password) throws BookingException{
-		MessageDigest messageDigest;
-		try {
-			messageDigest = MessageDigest.getInstance("MD5");
-		} catch (NoSuchAlgorithmException e) {
-			myLogger.error("Algorithm for hash not found.");
-			throw new BookingException("System Error.");
-		}
-		messageDigest.update(password.getBytes());
-		byte[] bytes = messageDigest.digest();
-		StringBuilder stringBuilder = new StringBuilder();
-		for(int i=0;i < bytes.length;i++){
-			stringBuilder.append(Integer.toHexString(0xff & bytes[i]));
-		}
-		return stringBuilder.toString();
-	}
-	
-	@Override
-	public int registerUser(UserBean userBean) throws BookingException {
-		myLogger.info("Execution in registerUser()");
-		
-		String query = "insert into users(user_id, password, role, user_name, mobile_no, phone, address, email)"
-						+ "values (?, ?, 'customer', ?, ?, ?, ?, ?)";
-		int recsAffected = 0;
-		
-		try(
-			PreparedStatement preparedStatement = connect.prepareStatement(query);
-		){
-			userBean.setUserID(getUserID());
-			preparedStatement.setInt(1, userBean.getUserID());
-			preparedStatement.setString(2, generatePasswordHash(userBean.getPassword()));
-			preparedStatement.setString(3,userBean.getUserName());
-			preparedStatement.setString(4, userBean.getMobileNumber());
-			preparedStatement.setString(5, userBean.getPhoneNumber());
-			preparedStatement.setString(6, userBean.getAddress());
-			preparedStatement.setString(7, userBean.getEmail());
-						
-			myLogger.info("Query Execution : " + query);
-			recsAffected = preparedStatement.executeUpdate();
-			
-			if(recsAffected > 0){
-				myLogger.info("New Entry -> User ID : "+ userBean.getUserID()
-									+ "\nPassword Hash: " + generatePasswordHash(userBean.getPassword())
-									+ "\nRole : " + userBean.getRole()
-									+ "\nUser Name : " + userBean.getUserName()
-									+ "\nMobile Number : " + userBean.getMobileNumber()
-									+ "\nPhone Number : " + userBean.getPhoneNumber()
-									+ "\nAddress : " + userBean.getAddress()
-									+ "\nEmail : " + userBean.getEmail());
-			}
-			else{
-				myLogger.error("System Error");
-				throw new BookingException("System Error. Try Again Later.");
-			}
-			
-		} catch (SQLException e) {
-			myLogger.error("Exception from registerUser()", e);
-			throw new BookingException("Problem in registering user.", e);
-		}
-		return userBean.getUserID();
-	}
-
-	
+	}	
 
 	@Override
 	public int bookRoom(BookingBean bookingBean) throws BookingException {
-		//TODO Change the query and function
 		myLogger.info("Execution in bookRoom()");
 		
 		String query = "insert into BOOKINGDETAILS(BOOKING_ID, ROOM_ID, USER_ID, BOOKED_FROM, BOOKED_TO, NO_OF_ADULTS, NO_OF_CHILDREN, "
 						+ "AMOUNT) values (?, ?, ?, ?, ?, ?, ?, ?)";
+		String supportQuery = "SELECT per_night_rate FROM roomdetails where room_id = ?";
 		int recsAffected = 0;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
+			preparedStatement.setInt(1, bookingBean.getRoomID());
+			myLogger.info("Support query Execution : " + supportQuery);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			float perNightRate = 0;
+			while(resultSet.next()){
+				perNightRate = resultSet.getFloat("AMOUNT"); 
+			}
+			long numberOfDays = bookingBean.getBookedFrom().until(bookingBean.getBookedTo(), ChronoUnit.DAYS);
+			bookingBean.setAmount(numberOfDays * perNightRate);
 			bookingBean.setBookingID(getBookingID());
+			
 			preparedStatement.setInt(1, bookingBean.getBookingID());
 			preparedStatement.setInt(2, bookingBean.getRoomID());
 			preparedStatement.setInt(3, bookingBean.getUserID());
@@ -181,42 +106,47 @@ public class CustomerDao implements ICustomerDao {
 	}
 
 	@Override  
-	public BookingBean viewBookingStatus(int bookingId) throws BookingException {
-		//TODO Change the query and function
-		BookingBean bookingBean = null;
+	public List<List<Object>> viewBookingStatus(int bookingId, int userId) throws BookingException {
+		List<List<Object>> bookingList = new ArrayList<List<Object>>();
+		List<Object> bookingStatus = new ArrayList<Object>();
 		myLogger.info("Execution in viewBookingStatus()");
 		
-		String query = "SELECT * FROM bookingdetails WHERE bookingid = ?";
+		String query = "SELECT r.room_no,b.booking_id,b.booked_from,b.booked_to FROM bookingdetails b,"
+				+ "roomretails r WHERE b.room_id=r.room_id AND b.booking_id = ? AND b.user_id = ? ";
 		ResultSet resultSet = null;
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 		){
-			preparedStatement.setInt(1, bookingId);		
+			preparedStatement.setInt(1, bookingId);	
+			preparedStatement.setInt(2, userId);
 			myLogger.info("Query Execution : " + query);
 			resultSet = preparedStatement.executeQuery();
 			
-			if(resultSet.next()){
-				return bookingBean;
-			}
-			else{
-				myLogger.error("System Error");
-				throw new BookingException("System Error. Try Again Later.");
+			while(resultSet.next()){
+				int roomNumber = resultSet.getInt("ROOM_NO");
+				LocalDate bookedFrom = resultSet.getDate("BOOKED_FROM").toLocalDate();
+				LocalDate bookedTo = resultSet.getDate("BOOKED_TO").toLocalDate();
+				bookingStatus.add(roomNumber);
+				bookingStatus.add(bookingId);
+				bookingStatus.add(bookedFrom);
+				bookingStatus.add(bookedTo);
+				bookingList.add(bookingStatus);
 			}
 		} catch (SQLException e) {
 			myLogger.error("Exception from viewBookingStatus()", e);
 			throw new BookingException("Problem in retrieving booking status.", e);
 		}
+		return bookingList;
 	}
 
 	@Override
 	public List<RoomBean> searchAvailableRooms(String city) throws BookingException {
-		//TODO change the query and function
 		List<RoomBean> roomList = new ArrayList<RoomBean>();
 		myLogger.info("Execution in searchAvailableRooms()");
 		
 		ResultSet resultSet=null;
-		String query = "SELECT * FROM roomdetails where availability='T' and hotel_id in (select hotel_id from hotels where city= ?) ";
+		String query = "SELECT * FROM roomdetails where availability='T' and hotel_id in (select hotel_id from hotels where LOWER(city) = ?) ";
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
 				

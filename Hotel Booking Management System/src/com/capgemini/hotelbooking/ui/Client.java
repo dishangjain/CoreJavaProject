@@ -13,7 +13,7 @@ import com.capgemini.hotelbooking.exception.BookingException;
 import com.capgemini.hotelbooking.service.AdminService;
 import com.capgemini.hotelbooking.service.CommonService;
 import com.capgemini.hotelbooking.service.CustomerService;
-import com.capgemini.hotelbooking.service.ICustomerService;
+import com.capgemini.hotelbooking.service.ICommonService;
 
 
 public class Client {
@@ -28,34 +28,36 @@ public class Client {
 			System.out.println("3.Exit\n");
 			System.out.print("Please select one of the options : ");
 			int option = scanner.nextInt();
+			ICommonService commonService;
 			switch(option){
 				case 1:
-					System.out.print("Username : ");
+					System.out.print("\nUsername : ");
 					String username = scanner.next();
 					System.out.print("Password : ");
 					String password = scanner.next();
-					CommonService commonService = new CommonService();
+					commonService = new CommonService();
 					UserBean userBean = commonService.login(username, password);
 					if(userBean == null){
 						System.out.println("Please enter valid credentials and try again.");
 					}
 					else{
+						System.out.println("\nWelcome " + userBean.getUserName());
 						if("admin".equals(userBean.getRole())){
 							boolean adminExitFlag = false;
 							do{
 								AdminService adminService = new AdminService();
 								System.out.println("\n1.Add new hotel");
-								System.out.println("\n2.Update existing hotel");
-								System.out.println("\n3.Delete a hotel");
-								System.out.println("\n4.Add new room");
-								System.out.println("\n5.Update existing room");
-								System.out.println("\n6.Delete a room");
-								System.out.println("\n7.View all hotels");
-								System.out.println("\n8.View bookings of specific hotel");
-								System.out.println("\n9.View bookings of specific date");
-								System.out.println("\n10.View guest list for a specific hotel");
-								System.out.println("\n11.Logout");
-								System.out.print("Please select one of the options : ");
+								System.out.println("2.Update existing hotel");
+								System.out.println("3.Delete a hotel");
+								System.out.println("4.Add new room");
+								System.out.println("5.Update existing room");
+								System.out.println("6.Delete a room");
+								System.out.println("7.View all hotels");
+								System.out.println("8.View bookings of specific hotel");
+								System.out.println("9.View bookings of specific date");
+								System.out.println("10.View guest list for a specific hotel");
+								System.out.println("11.Logout");
+								System.out.print("\nPlease select one of the options : ");
 								option = scanner.nextInt();
 								switch(option){
 									case 1:
@@ -239,7 +241,7 @@ public class Client {
 									case 10:
 										break;
 									case 11:
-										System.out.println("All changes saved. Logging you out " + userBean.getUserName() +"...\n");
+										System.out.println("\nAll changes saved. Logging you out " + userBean.getUserName() +"...\n");
 										adminExitFlag = true;
 										break;
 									default:
@@ -252,16 +254,17 @@ public class Client {
 							do{
 								CustomerService customerService = new CustomerService();
 								
-								System.out.println("1.Search for hotel rooms");
+								System.out.println("\n\n1.Search for hotel rooms");
 								System.out.println("2.Book Hotel Rooms");
 								System.out.println("3.View Booking status");
-								System.out.println("4.Log out");
+								System.out.println("4.Log out\n");
+								System.out.print("Please select one of the options : ");
 								option = scanner.nextInt();
 								switch(option){
 									case 1:
-										System.out.println("Enter the city in which you want to find a room : ");
+										System.out.println("\nEnter the city in which you want to find a room : ");
 										String city = scanner.next();
-										List<RoomBean> roomList = customerService.searchAvailableRooms(city);
+										List<RoomBean> roomList = customerService.searchAvailableRooms(city.toLowerCase());
 										System.out.println(roomList);
 										break;
 									case 2:
@@ -291,40 +294,47 @@ public class Client {
 										}
 										break;
 									case 3:
+										int bookingId = 0;
+										List<List<Object>> bookingList = customerService.viewBookingStatus(bookingId,userBean.getUserID());
+										if(bookingList.size() > 0){
+											System.out.println("Your bookings are : \n");
+											System.out.println(bookingList);
+										}
+										else{
+											System.out.println("No bookings done. Book rooms and get exciting offers.");
+										}
 										break;
 									case 4:
-										System.out.println("All changes saved. Logging you out " + userBean.getUserName() + "...\n");
+										System.out.println("\nAll changes saved. Logging you out " + userBean.getUserName() + "...\n");
 										customerExitFlag = true;
 										break;
 									default:
 										break;
 								}
 							}while(customerExitFlag == false);
-							
-							
 						}
 					}
 					break;
 				case 2:
 					String role = null;
 					int userID = 0;
-					System.out.println("\nPlease enter a unique username : ");
+					System.out.print("\nPlease enter a unique username : ");
 					username = scanner.next();
-					System.out.println("\nPlease enter password : ");
+					System.out.print("\nPlease enter password : ");
 					password = scanner.next();
-					System.out.println("\nPlease enter your mobile number : ");
+					System.out.print("\nPlease enter your mobile number : ");
 					String mobileNumber = scanner.next();
-					System.out.println("\nPlease enter your phone number : ");
+					System.out.print("\nPlease enter your phone number : ");
 					String phoneNumber = scanner.next();
-					System.out.println("\nPlease enter your address : ");
+					System.out.print("\nPlease enter your address : ");
 					String address = scanner.next();
-					System.out.println("\nPlease enter your email : ");
+					System.out.print("\nPlease enter your email : ");
 					String email = scanner.next();
 					
 					userBean = new UserBean(userID, password, role, username, mobileNumber, address, email, phoneNumber);
 					
-					ICustomerService customerService = new CustomerService();
-					userID = customerService.registerUser(userBean);
+					commonService = new CommonService();
+					userID = commonService.registerUser(userBean);
 					if(userID <= 0){
 						throw new BookingException("Problem in signing up the user.");
 					}
@@ -333,7 +343,7 @@ public class Client {
 					}
 					break;
 				case 3:
-					System.out.println("Thank you. Please visit again.");
+					System.out.println("\nThank you. Please visit again.");
 					exitFlag = true;
 					break;
 				default:

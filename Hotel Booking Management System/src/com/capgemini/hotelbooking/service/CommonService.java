@@ -36,4 +36,9 @@ public class CommonService implements ICommonService {
 	public List<RoomBean> retrieveRooms() throws BookingException {
 		return dao.retrieveRooms();
 	}
+
+	@Override
+	public int registerUser(UserBean userBean) throws BookingException {
+		return dao.registerUser(userBean);
+	}
 }

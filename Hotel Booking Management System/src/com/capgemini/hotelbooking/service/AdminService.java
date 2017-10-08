@@ -13,10 +13,17 @@ import com.capgemini.hotelbooking.dao.IAdminDao;
 import com.capgemini.hotelbooking.exception.BookingException;
 
 public class AdminService implements IAdminService{
-	private IAdminDao dao;
-	private static String customerIDPattern = "[A-Z]{1}[0-9]{6}";
-	private static String contactPattern = "[0-9]{10}";
-	private static String datePattern = "[0-9]{4}[-][0-9]{2}[-][0-9]{2}";
+	private static String hotelIDPattern = "[0-9]{1,4}";
+	private static String cityPattern ="[A-Z][A-Z a-z]*";
+	private static String numAdultPattern= "[0-9]";
+	private static String amountPattern= "[0-9]*";
+	private static String roomIDPattern = "[0-9]{1,4}";
+	private static String roomNumberPattern = "[0-9]{1,3}";
+	private static String roomTypePattern = "[A-Z a-z]{2,15}";
+	private static String perNightRatePattern = "[1-9][0-9]{2,10}";
+	private static String availablePattern = "(true|false|True|False|T|F)";
+	private static String photoPattern ="[A-Za-z 0-9]*[.](png|jpeg|gif)";
+	IAdminDao dao;
 	
 	static Logger myLogger = Logger.getLogger("myLogger");
 	
@@ -25,7 +32,7 @@ public class AdminService implements IAdminService{
 		dao = new AdminDao();
 	}
 	
-	private static boolean isGreaterThanEqual(LocalDate localDate1,LocalDate localDate2)
+	/*private static boolean isGreaterThanEqual(LocalDate localDate1,LocalDate localDate2)
 	{
 		int diffYears = Math.abs(localDate1.getYear() - localDate2.getYear());
 		int diffMonths = Math.abs(localDate1.getMonthValue() - localDate2.getMonthValue());
@@ -42,37 +49,107 @@ public class AdminService implements IAdminService{
 		else{
 			return false;
 		}
-	}
+	}*/
 	
-	
-	public static boolean validateCustomerID(String customerID){
+
+
+	public static boolean validateAdults(String numAdults){
 		boolean flag = false;
-		if(customerID.matches(customerIDPattern))
+		if(numAdults.matches(numAdultPattern))
 		{
 			flag = true;
 		}
 		return flag;
 	}
 	
-	public static boolean validateNumberOfTrucks(int neededCount, int actualCount){
+	public static boolean validateAmount(String amount){
 		boolean flag = false;
-		if(neededCount > 0 && neededCount <= actualCount)
+		if(amount.matches(amountPattern))
 		{
 			flag = true;
 		}
 		return flag;
 	}
 	
-	public static boolean validatePhoneNumber(String phoneNumber){
+	
+
+	
+	public static boolean validateCity(String city){
 		boolean flag = false;
-		if(phoneNumber.matches(contactPattern))
+		if(city.matches(cityPattern))
 		{
 			flag = true;
 		}
 		return flag;
 	}
 	
-	public static boolean validateDate(String dateString){
+	public static boolean validateHotelID(String hotelID){
+		boolean flag = false;
+		if(hotelID.matches(hotelIDPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateRoomID(String roomID){
+		boolean flag = false;
+		if(roomID.matches(roomIDPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	
+	public static boolean validateRoomNumber(String roomNumber){
+		boolean flag = false;
+		if(roomNumber.matches(roomNumberPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	
+	public static boolean validateRoomType(String roomType){
+		boolean flag = false;
+		if(roomType.matches(roomTypePattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validatePerNightRate(String perNRate){
+		boolean flag = false;
+		if(perNRate.matches(perNightRatePattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validateAvailable(String avail){
+		boolean flag = false;
+		if(avail.matches(availablePattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+	
+	public static boolean validatePhoto(String photo){
+		boolean flag = false;
+		if(photo.matches(photoPattern))
+		{
+			flag = true;
+		}
+		return flag;
+	}
+
+	
+	/*public static boolean validateDate(String dateString){
 		boolean flag = false;
 		if(dateString.matches(datePattern))
 		{
@@ -88,7 +165,7 @@ public class AdminService implements IAdminService{
 			flag = isGreaterThanEqual(LocalDate.of(year, month, date),LocalDate.now());
 		}
 		return flag;
-	}
+	}*/
 
 	@Override
 	public int addHotelDetails(HotelBean hotelBean) throws BookingException {

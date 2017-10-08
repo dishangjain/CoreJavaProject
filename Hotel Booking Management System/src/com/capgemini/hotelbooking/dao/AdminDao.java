@@ -5,7 +5,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -372,7 +371,7 @@ public class AdminDao implements IAdminDao {
 
 	@Override
 	public List<UserBean> viewGuestList() throws BookingException {
-		// TODO Auto-generated method stub
+		// TODO Do the implementation
 		return null;
 	}
 }

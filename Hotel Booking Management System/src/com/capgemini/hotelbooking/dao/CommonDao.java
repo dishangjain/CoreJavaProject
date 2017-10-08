@@ -29,6 +29,26 @@ public class CommonDao implements ICommonDao {
 		myLogger.info("Connection procured in CommonDao.");
 	}
 	
+	private int getUserID(){
+		int userId = 0;
+		String query = "SELECT user_id_seq.NEXTVAL FROM DUAL";
+		try
+		{
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+			myLogger.info("Query Execution : " + query);
+			ResultSet resultSet = preparedStatement.executeQuery();
+			if(resultSet.next())
+			{
+				userId = resultSet.getInt(1);
+			}
+		}
+		catch(SQLException e)
+		{
+			myLogger.error("Unable to generate user ID.");
+		}
+		return userId;
+	}
+	
 	private String generatePasswordHash(String password) throws BookingException{
 		MessageDigest messageDigest;
 		try {
@@ -147,4 +167,50 @@ public class CommonDao implements ICommonDao {
 		}
 		return roomList;
 	}
+	
+	@Override
+	public int registerUser(UserBean userBean) throws BookingException {
+		myLogger.info("Execution in registerUser()");
+		
+		String query = "insert into users(user_id, password, role, user_name, mobile_no, phone, address, email)"
+						+ "values (?, ?, 'customer', ?, ?, ?, ?, ?)";
+		int recsAffected = 0;
+		
+		try(
+			PreparedStatement preparedStatement = connect.prepareStatement(query);
+		){
+			userBean.setUserID(getUserID());
+			preparedStatement.setInt(1, userBean.getUserID());
+			preparedStatement.setString(2, generatePasswordHash(userBean.getPassword()));
+			preparedStatement.setString(3,userBean.getUserName());
+			preparedStatement.setString(4, userBean.getMobileNumber());
+			preparedStatement.setString(5, userBean.getPhoneNumber());
+			preparedStatement.setString(6, userBean.getAddress());
+			preparedStatement.setString(7, userBean.getEmail());
+						
+			myLogger.info("Query Execution : " + query);
+			recsAffected = preparedStatement.executeUpdate();
+			
+			if(recsAffected > 0){
+				myLogger.info("New Entry -> User ID : "+ userBean.getUserID()
+									+ "\nPassword Hash: " + generatePasswordHash(userBean.getPassword())
+									+ "\nRole : " + userBean.getRole()
+									+ "\nUser Name : " + userBean.getUserName()
+									+ "\nMobile Number : " + userBean.getMobileNumber()
+									+ "\nPhone Number : " + userBean.getPhoneNumber()
+									+ "\nAddress : " + userBean.getAddress()
+									+ "\nEmail : " + userBean.getEmail());
+			}
+			else{
+				myLogger.error("System Error");
+				throw new BookingException("System Error. Try Again Later.");
+			}
+			
+		} catch (SQLException e) {
+			myLogger.error("Exception from registerUser()", e);
+			throw new BookingException("Problem in registering user.", e);
+		}
+		return userBean.getUserID();
+	}
+
 }

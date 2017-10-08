@@ -936,3 +936,123 @@ Column Name : AVG_RATE_PER_NIGHTColumn Value : 2500
 2017-10-07 18:20:18,042 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
 2017-10-07 18:20:18,044 INFO [myLogger] - Service: Dao injected.
 2017-10-07 18:20:18,106 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:03:30,494 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:03:31,755 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:03:31,759 INFO [myLogger] - Execution in Login()
+2017-10-08 00:03:31,927 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:03:32,030 ERROR [myLogger] - Exception from Login()
+java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:452)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:400)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:884)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:471)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:199)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:535)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:238)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:1196)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1444)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1662)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:4364)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:4445)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:6268)
+	at com.capgemini.hotelbooking.dao.CommonDao.login(CommonDao.java:63)
+	at com.capgemini.hotelbooking.service.CommonService.login(CommonService.java:27)
+	at com.capgemini.hotelbooking.ui.Client.main(Client.java:38)
+2017-10-08 00:08:37,424 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:08:38,581 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:08:38,581 INFO [myLogger] - Execution in Login()
+2017-10-08 00:08:38,762 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:08:38,834 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:08:38,850 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:10:41,879 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:10:43,044 INFO [myLogger] - Connection procured in CustomerDao.
+2017-10-08 00:10:43,044 INFO [myLogger] - Execution in registerUser()
+2017-10-08 00:10:43,210 INFO [myLogger] - Query Execution : SELECT user_id_seq.NEXTVAL FROM DUAL
+2017-10-08 00:10:43,310 INFO [myLogger] - Query Execution : insert into users(user_id, password, role, user_name, mobile_no, phone, address, email)values (?, ?, 'customer', ?, ?, ?, ?, ?)
+2017-10-08 00:10:43,312 INFO [myLogger] - New Entry -> User ID : 1
+Password Hash: 3c12f8a2fd7d6875b45994f23676c7bd
+Role : null
+User Name : dishang
+Mobile Number : 7721849377
+Phone Number : 9324352142
+Address : Bhiwandi
+Email : jaindishang24@gmail.com
+2017-10-08 00:11:00,392 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:11:00,410 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:11:00,410 INFO [myLogger] - Execution in Login()
+2017-10-08 00:11:00,410 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:11:00,426 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:11:00,438 INFO [myLogger] - Connection procured in CustomerDao.
+2017-10-08 00:13:22,428 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:13:23,591 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:13:23,591 INFO [myLogger] - Execution in Login()
+2017-10-08 00:13:23,767 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:13:23,835 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:13:23,851 INFO [myLogger] - Connection procured in CustomerDao.
+2017-10-08 00:13:56,001 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:13:57,166 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:13:57,166 INFO [myLogger] - Execution in Login()
+2017-10-08 00:13:57,339 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:13:57,410 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:13:57,427 INFO [myLogger] - Connection procured in CustomerDao.
+2017-10-08 00:14:35,943 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:14:35,963 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:14:35,967 INFO [myLogger] - Execution in Login()
+2017-10-08 00:14:35,967 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:14:35,967 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:14:35,990 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:15:08,819 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:15:09,988 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:15:09,988 INFO [myLogger] - Execution in Login()
+2017-10-08 00:15:10,156 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:15:10,229 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:15:10,243 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:15:59,395 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:16:00,564 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:16:00,564 INFO [myLogger] - Execution in Login()
+2017-10-08 00:16:00,732 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:16:00,808 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:16:00,824 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:17:44,188 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:17:45,343 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:17:45,343 INFO [myLogger] - Execution in Login()
+2017-10-08 00:17:45,508 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:17:45,582 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:17:45,599 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:18:35,695 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:18:36,864 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:18:36,864 INFO [myLogger] - Execution in Login()
+2017-10-08 00:18:37,028 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:18:37,101 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:18:37,118 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:19:22,510 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:19:23,666 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:19:23,666 INFO [myLogger] - Execution in Login()
+2017-10-08 00:19:23,843 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:19:23,924 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:19:23,955 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:19:34,721 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:19:34,749 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:19:34,749 INFO [myLogger] - Execution in Login()
+2017-10-08 00:19:34,749 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:19:34,755 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:19:34,773 INFO [myLogger] - Connection procured in CustomerDao.
+2017-10-08 00:21:06,562 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:21:07,731 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:21:07,731 INFO [myLogger] - Execution in Login()
+2017-10-08 00:21:07,899 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:21:07,991 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:21:08,023 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:21:34,919 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:21:36,073 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:21:36,073 INFO [myLogger] - Execution in Login()
+2017-10-08 00:21:36,237 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:21:36,308 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:21:36,324 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 00:21:46,612 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:21:46,640 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 00:21:46,640 INFO [myLogger] - Execution in Login()
+2017-10-08 00:21:46,640 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 00:21:46,643 INFO [myLogger] - Service: Dao injected.
+2017-10-08 00:21:46,674 INFO [myLogger] - Connection procured in CustomerDao.

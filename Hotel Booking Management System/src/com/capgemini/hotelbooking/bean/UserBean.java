@@ -76,9 +76,8 @@ public class UserBean {
 	
 	@Override
 	public String toString() {
-		return "UserBean [userID=" + userID + ", password=" + password
-				+ ", role=" + role + ", userName=" + userName
-				+ ", mobileNumber=" + mobileNumber + ", address=" + address
-				+ ", email=" + email + ", phoneNumber=" + phoneNumber + "]";
+		return "User(User ID=" + userID + ", Username=" + userName
+				+ ", Mobile number=" + mobileNumber + ", Address=" + address
+				+ ", Email=" + email + ", Phone number=" + phoneNumber + ")";
 	}
 }

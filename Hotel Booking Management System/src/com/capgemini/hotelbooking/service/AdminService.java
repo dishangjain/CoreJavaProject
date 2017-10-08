@@ -17,12 +17,9 @@ public class AdminService implements IAdminService{
 	IAdminDao dao;
 	
 	private static String hotelIDPattern = "[0-9]{1,4}";
-	private static String amountPattern= "[0-9]*";
 	private static String roomIDPattern = "[0-9]{1,4}";
 	private static String roomNumberPattern = "[0-9]{1,3}";
-	private static String roomTypePattern = "[A-Z a-z]{2,15}";
 	private static String perNightRatePattern = "[1-9][0-9]{2,10}";
-	private static String availablePattern = "(true|false|True|False|T|F)";
 	private static String photoPattern ="[A-Za-z 0-9]*[.](png|jpeg|gif)";
 	private static String mobileNumberPattern = "[7-9][0-9]{9}";
 	private static String ratingPattern = "[0-4][.][0-9]";
@@ -75,15 +72,6 @@ public class AdminService implements IAdminService{
 		}
 	}*/
 	
-	public static boolean validateAmount(String amount){
-		boolean flag = false;
-		if(amount.matches(amountPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
 	public static boolean validateCity(String city){
 		boolean flag = false;
 		if(city.matches(cityPattern))
@@ -121,28 +109,9 @@ public class AdminService implements IAdminService{
 		return flag;
 	}
 	
-	
-	public static boolean validateRoomType(String roomType){
-		boolean flag = false;
-		if(roomType.matches(roomTypePattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
 	public static boolean validatePerNightRate(String perNRate){
 		boolean flag = false;
 		if(perNRate.matches(perNightRatePattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
-	public static boolean validateAvailable(String avail){
-		boolean flag = false;
-		if(avail.matches(availablePattern))
 		{
 			flag = true;
 		}
@@ -200,9 +169,9 @@ public class AdminService implements IAdminService{
 		{
 			flag = true;
 		}
-		int year = Integer.parseInt(dateString.substring(0, 4));
-		int month = Integer.parseInt(dateString.substring(5, 7));
-		int date = Integer.parseInt(dateString.substring(8, 10));
+		int date = Integer.parseInt(dateString.substring(0, 2));
+		int month = Integer.parseInt(dateString.substring(3, 5));
+		int year = Integer.parseInt(dateString.substring(6, 10));
 		if(month > 12 || month <= 0 || date > 31 || date <= 0 || year < 0){
 			flag = false;
 		}

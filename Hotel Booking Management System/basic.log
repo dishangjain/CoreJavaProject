@@ -1172,3 +1172,114 @@ Hotel ID of deleted row : 3
 2017-10-08 14:43:33,105 INFO [myLogger] - Query Execution : SELECT * FROM hotels
 2017-10-08 14:43:33,106 INFO [myLogger] - Service: Dao injected.
 2017-10-08 14:43:33,123 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:05:03,510 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:05:12,817 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 18:05:12,817 INFO [myLogger] - Execution in Login()
+2017-10-08 18:05:13,707 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 18:05:13,739 ERROR [myLogger] - Exception from Login()
+java.sql.SQLSyntaxErrorException: ORA-00942: table or view does not exist
+
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:452)
+	at oracle.jdbc.driver.T4CTTIoer.processError(T4CTTIoer.java:400)
+	at oracle.jdbc.driver.T4C8Oall.processError(T4C8Oall.java:884)
+	at oracle.jdbc.driver.T4CTTIfun.receive(T4CTTIfun.java:471)
+	at oracle.jdbc.driver.T4CTTIfun.doRPC(T4CTTIfun.java:199)
+	at oracle.jdbc.driver.T4C8Oall.doOALL(T4C8Oall.java:535)
+	at oracle.jdbc.driver.T4CPreparedStatement.doOall8(T4CPreparedStatement.java:238)
+	at oracle.jdbc.driver.T4CPreparedStatement.executeForDescribe(T4CPreparedStatement.java:1196)
+	at oracle.jdbc.driver.OracleStatement.executeMaybeDescribe(OracleStatement.java:1444)
+	at oracle.jdbc.driver.OracleStatement.doExecuteWithTimeout(OracleStatement.java:1662)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeInternal(OraclePreparedStatement.java:4364)
+	at oracle.jdbc.driver.OraclePreparedStatement.executeQuery(OraclePreparedStatement.java:4445)
+	at oracle.jdbc.driver.OraclePreparedStatementWrapper.executeQuery(OraclePreparedStatementWrapper.java:6268)
+	at com.capgemini.hotelbooking.dao.CommonDao.login(CommonDao.java:83)
+	at com.capgemini.hotelbooking.service.CommonService.login(CommonService.java:48)
+	at com.capgemini.hotelbooking.ui.Client.main(Client.java:42)
+2017-10-08 18:12:57,734 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:03,437 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 18:13:03,437 INFO [myLogger] - Execution in Login()
+2017-10-08 18:13:04,391 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 18:13:34,727 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:34,820 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 18:13:34,820 INFO [myLogger] - Execution in Login()
+2017-10-08 18:13:34,820 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 18:13:34,871 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:35,027 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:39,914 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 18:13:40,008 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 18:13:40,008 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:40,147 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:41,475 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 18:13:41,491 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 18:13:41,491 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:41,606 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:42,778 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 18:13:42,778 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 18:13:42,778 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:43,018 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:44,158 INFO [myLogger] - Execution in retrieveRooms()
+2017-10-08 18:13:44,174 INFO [myLogger] - Query Execution : SELECT * FROM roomdetails
+2017-10-08 18:13:44,174 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:44,363 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:46,098 INFO [myLogger] - Execution in retrieveRooms()
+2017-10-08 18:13:46,098 INFO [myLogger] - Query Execution : SELECT * FROM roomdetails
+2017-10-08 18:13:46,098 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:46,182 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:47,776 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 18:13:47,776 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 18:13:47,776 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:47,881 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:13:50,141 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 18:13:50,141 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 18:13:50,141 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:13:50,239 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:16:05,185 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:16:10,481 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 18:16:10,481 INFO [myLogger] - Execution in Login()
+2017-10-08 18:16:11,466 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 18:16:11,847 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:16:11,943 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:16:35,665 INFO [myLogger] - Execution in getBookingsOfDate()
+2017-10-08 18:16:35,665 INFO [myLogger] - Query Execution : SELECT * FROM bookingdetails WHERE ? BETWEEN BOOKED_FROM AND BOOKED_TO
+2017-10-08 18:16:35,782 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:16:35,876 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 18:16:47,308 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 18:16:47,324 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 18:16:47,324 INFO [myLogger] - Service: Dao injected.
+2017-10-08 18:16:47,479 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 21:12:03,484 INFO [myLogger] - Service: Dao injected.
+2017-10-08 21:12:08,849 INFO [myLogger] - Connection procured in CommonDao.
+2017-10-08 21:12:08,849 INFO [myLogger] - Execution in Login()
+2017-10-08 21:12:09,709 INFO [myLogger] - Query Execution : SELECT * FROM users WHERE user_name=? AND password=?
+2017-10-08 21:12:10,069 INFO [myLogger] - Service: Dao injected.
+2017-10-08 21:12:10,131 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 21:13:32,334 INFO [myLogger] - Execution in addHotelDetails()
+2017-10-08 21:13:32,334 INFO [myLogger] - Query Execution : SELECT hotel_id_seq.NEXTVAL FROM DUAL
+2017-10-08 21:13:32,529 INFO [myLogger] - Query Execution : insert into HOTELS(HOTEL_ID, CITY, HOTEL_NAME, ADDRESS, DESCRIPTION, AVG_RATE_PER_NIGHT, PHONE_NO1,PHONE_NO2, RATING, EMAIL, FAX) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2017-10-08 21:13:32,663 INFO [myLogger] - New Entry -> Hotel ID : 1
+City : Delhi
+Hotel Name : Taj
+Address : CP
+Description : High-Standards
+Average Rate per Night : 4000.0
+Phone Number 1 : 7898745632
+Phone Number 2 : 9890898072
+Rating : 4.0
+Fax : 235434
+2017-10-08 21:13:32,664 INFO [myLogger] - Service: Dao injected.
+2017-10-08 21:13:32,782 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 21:13:35,644 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 21:13:35,660 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 21:14:01,345 INFO [myLogger] - Execution in updateHotelDetails()
+2017-10-08 21:14:01,345 INFO [myLogger] - Query Execution : UPDATE hotels SET CITY=? WHERE HOTEL_ID=?
+2017-10-08 21:14:01,360 INFO [myLogger] - Hotel Table Updated.
+Hotel ID : 1
+Column Name : CITYColumn Value : Mumbai
+2017-10-08 21:14:01,360 INFO [myLogger] - Service: Dao injected.
+2017-10-08 21:14:01,469 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 21:14:10,680 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 21:14:10,696 INFO [myLogger] - Query Execution : SELECT * FROM hotels
+2017-10-08 21:14:10,696 INFO [myLogger] - Service: Dao injected.
+2017-10-08 21:14:10,986 INFO [myLogger] - Connection procured in AdminDao.
+2017-10-08 21:14:29,577 INFO [myLogger] - Execution in retrieveHotels()
+2017-10-08 21:14:29,588 INFO [myLogger] - Query Execution : SELECT * FROM hotels

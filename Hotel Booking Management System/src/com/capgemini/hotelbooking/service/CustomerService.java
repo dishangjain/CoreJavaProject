@@ -12,13 +12,8 @@ import com.capgemini.hotelbooking.exception.BookingException;
 
 public class CustomerService implements ICustomerService {
 	private ICustomerDao dao;
-
 	
-	private static String userIDPattern = "[0-9]{1,4}";
-	private static String mobileNumberPattern = "[7-9][0-9]{9}";
-	private static String emailPattern = "[A-Z a-z]*[@][A-Z a-z]*[.](com|org|in|co.in)";
 	private static String dateStringPattern = "(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}";
-	private static String faxPattern = "[0-9]{6}";
 	private static String cityPattern = "[A-Z][A-Z a-z]*";
 	private static String roomIDPattern = "[0-9]{1,4}";
 	private static String numAdultPattern= "[0-9]{1,2}";
@@ -80,42 +75,6 @@ public class CustomerService implements ICustomerService {
 	public static boolean validateNumChildren(String numChildren){
 		boolean flag = false;
 		if(numChildren.matches(numChildrenPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
-	public static boolean validateUserID(String userID){
-		boolean flag = false;
-		if(userID.matches(userIDPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
-	public static boolean validateFax(String fax){
-		boolean flag = false;
-		if(fax.matches(faxPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
-	public static boolean validateMobileNumber(String mobileNumber){
-		boolean flag = false;
-		if(mobileNumber.matches(mobileNumberPattern))
-		{
-			flag = true;
-		}
-		return flag;
-	}
-	
-	public static boolean validateEmail(String email){
-		boolean flag = false;
-		if(email.matches(emailPattern))
 		{
 			flag = true;
 		}

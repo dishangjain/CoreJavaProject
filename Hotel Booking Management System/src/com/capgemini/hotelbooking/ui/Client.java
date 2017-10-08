@@ -17,8 +17,6 @@ import com.capgemini.hotelbooking.service.IAdminService;
 import com.capgemini.hotelbooking.service.ICommonService;
 import com.capgemini.hotelbooking.service.ICustomerService;
 
-
-@SuppressWarnings("unused")
 public class Client {
 	public static void main(String[] args) throws BookingException {
 		Scanner scanner = new Scanner(System.in); 
@@ -50,7 +48,7 @@ public class Client {
 						if("admin".equals(userBean.getRole())){
 							boolean adminExitFlag = false;
 							do{
-								AdminService adminService = new AdminService();
+								IAdminService adminService = new AdminService();
 								System.out.println("\n1.Add new hotel");
 								System.out.println("2.Update existing hotel");
 								System.out.println("3.Delete a hotel");
@@ -74,9 +72,12 @@ public class Client {
 										String hotelName = scanner.next();
 										
 										do{
-											System.out.print("\nPlease enter city : ");
+											System.out.print("\nPlease enter city (eg. Mumbai) : ");
 											city= scanner.next();
 											cityFlag = AdminService.validateCity(city);
+											if(cityFlag==false){
+												System.out.println("\nPlease enter valid city!");
+											}
 										}while(cityFlag==false);
 										
 										System.out.print("\nPlease enter address of hotel : ");
@@ -92,30 +93,45 @@ public class Client {
 											System.out.print("\nPlease enter primary phone number : ");
 											primaryPhone = scanner.next();
 											phoneFlag = AdminService.validateMobileNumber(primaryPhone);
+											if(phoneFlag==false){
+												System.out.println("\nPlease enter valid phone number!");
+											}
 										}while(phoneFlag==false);
 										
 										do{
 											System.out.print("\nPlease enter secondary phone number : ");
 											secondaryPhone = scanner.next();
 											phoneFlag = AdminService.validateMobileNumber(secondaryPhone);
+											if(phoneFlag==false){
+												System.out.println("\nPlease enter valid phone number");
+											}
 										}while(phoneFlag==false);
 										
 										do{
 											System.out.print("\nPlease enter the rating of hotel : ");
 											rating = scanner.next();
 											ratingFlag = AdminService.validateRating(rating);
+											if(ratingFlag==false){
+												System.out.println("\nPlease enter valid rating!");
+											}
 										}while(ratingFlag==false);
 										
 										do{
 											System.out.print("\nPlease enter hotel email : ");
 											email = scanner.next();
 											emailFlag = AdminService.validateEmail(email);
+											if(emailFlag==false){
+												System.out.println("\nPlease enter valid email!");
+											}
 										}while(emailFlag==false);
 										
 										do{
 											System.out.print("\nPlease enter hotel fax : ");
 											fax = scanner.next();
 											faxFlag = AdminService.validateFax(fax);
+											if(faxFlag==false){
+												System.out.println("\nPlease enter valid fax!");
+											}
 										}while(faxFlag==false);
 										
 										
@@ -145,6 +161,9 @@ public class Client {
 												System.out.print("\nPlease enter hotel ID for which you want to update a detail : ");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
+												if(hotelIdFlag==false){
+													System.out.println("\nPlease enter valid hotel ID!");
+												}
 											}while(hotelIdFlag==false);
 											
 											boolean optionFlag=false;
@@ -165,6 +184,9 @@ public class Client {
 												
 												if(attributeOption>=1 && attributeOption<=10){
 													optionFlag = true;
+												}
+												if(optionFlag==false){
+													System.out.println("\nPlease enter valid option!");
 												}
 											}while(optionFlag==false);
 											
@@ -196,6 +218,9 @@ public class Client {
 												System.out.print("\nPlease enter the hotel ID for the hotels you want to delete : ");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
+												if(hotelIdFlag==false){
+													System.out.println("\nPlease enter valid hotel ID!");
+												}
 											}while(hotelIdFlag==false);
 											
 											boolean statusCode = adminService.deleteHotelDetails(hotelID);
@@ -227,12 +252,18 @@ public class Client {
 												System.out.print("\nPlease enter the hotel ID in which you want to add a room : ");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
+												if(hotelIdFlag==false){
+													System.out.println("\nPlease enter valid hotel ID!");
+												}
 											}while(hotelIdFlag==false);
 											
 											do{
 												System.out.print("\nPlease enter room number :");
 												roomNumber = scanner.next();
 												roomNumberFlag = AdminService.validateRoomNumber(roomNumber);
+												if(roomNumberFlag==false){
+													System.out.println("\nPlease enter valid room number!");
+												}
 											}while(roomNumberFlag==false);
 											
 											String[] roomTypes = {"","Non AC","AC Prime","AC Deluxe","Super AC Deluxe"};
@@ -246,19 +277,28 @@ public class Client {
 												if(option>=1 && option<=4){
 													optionFlag = true;
 												}
+												if(optionFlag==false){
+													System.out.println("\nPlease enter valid option!");
+												}
 											}while(optionFlag==false);
 											
 											do{
 												System.out.print("\nPlease enter cost/night of the room :");
 												perNightRate = scanner.nextFloat();
 												rateFlag = AdminService.validatePerNightRate(Float.toString(perNightRate));
+												if(rateFlag==false){
+													System.out.println("\nPlease enter valid amount!");
+												}
 											}while(rateFlag==false);
 											
 											do{
 												System.out.print("\nPlease enter the filename of the photo :");
 												photo = scanner.next();
 												photoFlag = AdminService.validatePhoto(photo);
-											}while(photoFlag=false);
+												if(photoFlag==false){
+													System.out.println("\nPlease enter valid filename!");
+												}
+											}while(photoFlag==false);
 											
 											RoomBean roomBean = new RoomBean(hotelID, roomId, roomNumber, roomTypes[option], perNightRate, true, photo);
 											roomId = adminService.addRoomDetails(roomBean);
@@ -287,6 +327,9 @@ public class Client {
 												System.out.println("\n\nPlease enter room ID for which you want to update a detail : ");
 												roomID = scanner.nextInt();
 												roomIdFlag = AdminService.validateRoomID(Integer.toString(roomID));
+												if(roomIdFlag==false){
+													System.out.println("\nPlease enter valid room ID");
+												}
 											}while(roomIdFlag==false);
 											
 											do{
@@ -298,6 +341,9 @@ public class Client {
 												attributeOption = scanner.nextInt();
 												if(option>=1 && option<=4){
 													optionFlag = true;
+												}
+												if(optionFlag==false){
+													System.out.println("\nPlease enter valid option!");
 												}
 											}while(optionFlag==false);
 											
@@ -328,6 +374,9 @@ public class Client {
 												System.out.print("\nPlease enter the room ID for the room you want to delete : ");
 												roomID = scanner.nextInt();
 												roomIdFlag = AdminService.validateRoomID(Integer.toString(roomID));
+												if(roomIdFlag==false){
+													System.out.println("\nPlease enter valid room ID");
+												}
 											}while(roomIdFlag==false);
 											
 											boolean statusCode = adminService.deleteRoomDetails(roomID);
@@ -345,10 +394,6 @@ public class Client {
 									case 7:
 										hotelList = commonService.retrieveHotels();
 										if(hotelList.size() > 0){
-											boolean hotelIdFlag = false, roomNumberFlag=false, optionFlag=false, rateFlag = false, photoFlag = false;
-											int hotelID = 0;
-											String roomNumber = null, photo = null;
-											float perNightRate = 0;
 											System.out.println("\nFollowing are the list of hotels : \n");
 											System.out.println(hotelList);
 										}
@@ -359,10 +404,8 @@ public class Client {
 									case 8:
 										hotelList = commonService.retrieveHotels();
 										if(hotelList.size() > 0){
-											boolean hotelIdFlag = false, roomNumberFlag=false, optionFlag=false, rateFlag = false, photoFlag = false;
+											boolean hotelIdFlag = false;
 											int hotelID = 0;
-											String roomNumber = null, photo = null;
-											float perNightRate = 0;
 											System.out.println("\nFollowing are the list of hotels : \n");
 											System.out.println(hotelList);
 											
@@ -370,6 +413,9 @@ public class Client {
 												System.out.print("\nPlease enter the hotelID from the above list for which you want to view bookings :");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
+												if(hotelIdFlag==false){
+													System.out.println("\nPlease enter valid hotel ID");
+												}
 											}while(hotelIdFlag==false);
 											
 											List<BookingBean> bookingList = adminService.viewBookingsOfHotel(hotelID);
@@ -392,6 +438,9 @@ public class Client {
 											System.out.print("\nPlease enter the date in format(dd-mm-yyyy) for which you want to view bookings : ");
 											targetDate = scanner.next();
 											dateFlag = AdminService.validateDate(targetDate);
+											if(dateFlag==false){
+												System.out.println("\nPlease enter valid date in the specified!");
+											}
 										}while(dateFlag==false);
 										
 										DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -409,10 +458,8 @@ public class Client {
 									case 10:
 										hotelList = commonService.retrieveHotels();
 										if(hotelList.size() > 0){
-											boolean hotelIdFlag = false, roomNumberFlag=false, optionFlag=false, rateFlag = false, photoFlag = false;
+											boolean hotelIdFlag = false;
 											int hotelID = 0;
-											String roomNumber = null, photo = null;
-											float perNightRate = 0;
 											System.out.println("\nFollowing are the list of hotels : \n");
 											System.out.println(hotelList);
 											
@@ -420,6 +467,9 @@ public class Client {
 												System.out.print("\nPlease enter the hotelID from the above list for which you want to view guest list :");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
+												if(hotelIdFlag==false){
+													System.out.println("\nPlease enter valid hotel ID!");
+												}
 											}while(hotelIdFlag==false);
 											
 											List<UserBean> guestList = adminService.viewGuestList(hotelID);
@@ -463,6 +513,9 @@ public class Client {
 											System.out.println("\nEnter the city in which you want to find a room : ");
 											city = scanner.next();
 											cityFlag = CustomerService.validateCity(city);
+											if(cityFlag==false){
+												System.out.println("\nPlease enter valid city!(eg. Pune)");
+											}
 										}while(cityFlag==false);
 										
 										List<RoomBean> roomList = customerService.searchAvailableRooms(city.toLowerCase());
@@ -481,6 +534,9 @@ public class Client {
 												System.out.print("\nPlease enter the room ID from the above list : ");
 												roomID = scanner.nextInt();
 												roomIdFlag = CustomerService.validateRoomID(Integer.toString(roomID));
+												if(roomIdFlag==false){
+													System.out.println("\nPlease enter valid room ID!");
+												}
 											}while(roomIdFlag==false);
 											
 											int userID = userBean.getUserID(); 
@@ -490,6 +546,9 @@ public class Client {
 												System.out.print("\nEnter start date : (dd-mm-yyyy)");
 												bookedFrom = scanner.next();
 												dateFlag = CustomerService.validateDate(bookedFrom);
+												if(dateFlag==false){
+													System.out.println("\nPlease enter valid date in the specified format!");
+												}
 											}while(dateFlag == false);
 											
 											LocalDate parsedBookedFromDate = LocalDate.parse(bookedFrom, formatter);
@@ -498,6 +557,9 @@ public class Client {
 												System.out.print("Enter end date : (dd-mm-yyyy)");
 												bookedTo = scanner.next();
 												dateFlag = CustomerService.validateDate(bookedTo);
+												if(dateFlag==false){
+													System.out.println("\nPlease enter valid date in the specified format!");
+												}
 											}while(dateFlag == false);
 											
 											LocalDate parsedBookedToDate = LocalDate.parse(bookedTo, formatter);
@@ -506,12 +568,18 @@ public class Client {
 												System.out.println("Enter no of Adults : ");
 												numAdults = scanner.nextInt();
 												numAdultsFlag = CustomerService.validateNumAdults(Integer.toString(numAdults));
+												if(numAdultsFlag==false){
+													System.out.println("\nPlease enter valid number!");
+												}
 											}while(numAdultsFlag==false);
 											
 											do{
 												System.out.println("Enter no of children : ");
 												numChildren = scanner.nextInt();
 												numChildrenFlag = CustomerService.validateNumChildren(Integer.toString(numChildren));
+												if(numChildrenFlag==false){
+													System.out.println("\nPlease enter valid number!");
+												}
 											}while(numChildrenFlag==false);
 											
 											float amount = 0;
@@ -555,6 +623,7 @@ public class Client {
 						username = scanner.next();
 						if(userNameList.contains(username)){
 							userNameFlag = false;
+							System.out.println("\nUsername already exists!");
 						}
 						else{
 							userNameFlag = true;
@@ -568,12 +637,18 @@ public class Client {
 						System.out.print("\nPlease enter your mobile number : ");
 						mobileNumber = scanner.next();
 						mobileNumberFlag = CommonService.validateMobileNumber(mobileNumber);
+						if(mobileNumberFlag==false){
+							System.out.println("\nPlease enter valid mobile number!");
+						}
 					}while(mobileNumberFlag==false);
 					
 					do{
 						System.out.print("\nPlease enter your phone number : ");
 						phoneNumber = scanner.next();
 						mobileNumberFlag = CommonService.validateMobileNumber(phoneNumber);
+						if(mobileNumberFlag==false){
+							System.out.println("\nPlease enter valid phone number!");
+						}
 					}while(mobileNumberFlag==false);
 					
 					System.out.print("\nPlease enter your address : ");
@@ -583,6 +658,9 @@ public class Client {
 						System.out.print("\nPlease enter your email : ");
 						email = scanner.next();
 						emailFlag = CommonService.validateEmail(email);
+						if(emailFlag==false){
+							System.out.println("\nPlease enter valid email!");
+						}
 					}while(emailFlag==false);
 					
 					userBean = new UserBean(userID, password, role, username, mobileNumber, address, email, phoneNumber);

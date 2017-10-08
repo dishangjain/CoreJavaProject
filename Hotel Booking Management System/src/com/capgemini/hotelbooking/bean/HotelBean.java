@@ -99,12 +99,12 @@ public class HotelBean {
 	
 	@Override
 	public String toString() {
-		return "HotelBean [hotelID=" + hotelID + ", city=" + city
-				+ ", hotelName=" + hotelName + ", address=" + address
-				+ ", description=" + description + ", avgRatePerNight="
-				+ avgRatePerNight + ", phoneNumber1=" + phoneNumber1
-				+ ", phoneNumber2=" + phoneNumber2 + ", rating=" + rating
-				+ ", email=" + email + ", fax=" + fax + "]";
+		return "Hotel(Hotel ID =" + hotelID + "City=" + city
+				+ ", Hotel name=" + hotelName + ", Address=" + address
+				+ ", description=" + description + ", Average cost of a room="
+				+ avgRatePerNight + ", Phone number 1=" + phoneNumber1
+				+ ", Phone number 2=" + phoneNumber2 + ", Rating=" + rating
+				+ ", Email=" + email + ", Fax=" + fax + "]";
 	}
 	
 }

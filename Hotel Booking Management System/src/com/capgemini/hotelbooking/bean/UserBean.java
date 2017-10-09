@@ -78,6 +78,6 @@ public class UserBean {
 	public String toString() {
 		return "User(User ID=" + userID + ", Username=" + userName
 				+ ", Mobile number=" + mobileNumber + ", Address=" + address
-				+ ", Email=" + email + ", Phone number=" + phoneNumber + ")";
+				+ ", Email=" + email + ", Phone number=" + phoneNumber + ")\n";
 	}
 }

@@ -2,6 +2,8 @@ package com.capgemini.hotelbooking.ui;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -324,7 +326,7 @@ public class Client {
 											System.out.println(roomList);
 											
 											do{
-												System.out.println("\n\nPlease enter room ID for which you want to update a detail : ");
+												System.out.print("\n\nPlease enter room ID for which you want to update a detail : ");
 												roomID = scanner.nextInt();
 												roomIdFlag = AdminService.validateRoomID(Integer.toString(roomID));
 												if(roomIdFlag==false){
@@ -336,10 +338,10 @@ public class Client {
 												System.out.println("\n\n1.Room Number");
 												System.out.println("2.Room Type");
 												System.out.println("3.Cost per night");
-												System.out.println("4.Photo Filename");
+												System.out.println("4.Photo Filename\n");
 												System.out.print("Please enter your choice from the list : ");
 												attributeOption = scanner.nextInt();
-												if(option>=1 && option<=4){
+												if(attributeOption>=1 && attributeOption<=4){
 													optionFlag = true;
 												}
 												if(optionFlag==false){
@@ -410,7 +412,7 @@ public class Client {
 											System.out.println(hotelList);
 											
 											do{
-												System.out.print("\nPlease enter the hotelID from the above list for which you want to view bookings :");
+												System.out.print("\nPlease enter the hotelID from the above list for which you want to view bookings : ");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
 												if(hotelIdFlag==false){
@@ -464,7 +466,7 @@ public class Client {
 											System.out.println(hotelList);
 											
 											do{
-												System.out.print("\nPlease enter the hotelID from the above list for which you want to view guest list :");
+												System.out.print("\nPlease enter the hotelID from the above list for which you want to view guest list : ");
 												hotelID = scanner.nextInt();
 												hotelIdFlag = AdminService.validateHotelID(Integer.toString(hotelID));
 												if(hotelIdFlag==false){
@@ -510,7 +512,7 @@ public class Client {
 										boolean cityFlag = false;
 										String city = null;
 										do{
-											System.out.println("\nEnter the city in which you want to find a room : ");
+											System.out.print("\nEnter the city in which you want to find a room : ");
 											city = scanner.next();
 											cityFlag = CustomerService.validateCity(city);
 											if(cityFlag==false){
@@ -519,7 +521,12 @@ public class Client {
 										}while(cityFlag==false);
 										
 										List<RoomBean> roomList = customerService.searchAvailableRooms(city.toLowerCase());
-										System.out.println(roomList);
+										if(roomList.size() > 0){
+											System.out.println(roomList);
+										}
+										else{
+											System.out.println("\nNo rooms found.");
+										}
 										break;
 									case 2:
 										roomList = commonService.retrieveRooms();
@@ -527,84 +534,122 @@ public class Client {
 											int bookingID = 0,roomID = 0, numAdults = 0, numChildren = 0;
 											boolean roomIdFlag = false, numAdultsFlag=false, numChildrenFlag = false, dateFlag = false;
 											String bookedFrom = null, bookedTo = null;
-											System.out.println("\nFollowing are the list of rooms : \n");
-											System.out.println(roomList);
 											
-											do{
-												System.out.print("\nPlease enter the room ID from the above list : ");
-												roomID = scanner.nextInt();
-												roomIdFlag = CustomerService.validateRoomID(Integer.toString(roomID));
-												if(roomIdFlag==false){
-													System.out.println("\nPlease enter valid room ID!");
+											List<RoomBean> tempRoomList = new ArrayList<RoomBean>();
+											for(RoomBean room : roomList){
+												if(room.isAvailable()){
+													tempRoomList.add(room);
 												}
-											}while(roomIdFlag==false);
+											}
 											
-											int userID = userBean.getUserID(); 
-											DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-											
-											do{
-												System.out.print("\nEnter start date : (dd-mm-yyyy)");
-												bookedFrom = scanner.next();
-												dateFlag = CustomerService.validateDate(bookedFrom);
-												if(dateFlag==false){
-													System.out.println("\nPlease enter valid date in the specified format!");
+											if(tempRoomList.size() > 0){
+												System.out.println("\nFollowing are the list of rooms : \n");
+												System.out.println(tempRoomList);
+												do{
+													System.out.print("\nPlease enter the room ID from the above list : ");
+													roomID = scanner.nextInt();
+													roomIdFlag = CustomerService.validateRoomID(Integer.toString(roomID));
+													if(roomIdFlag){
+														roomIdFlag = false;
+														for(RoomBean room : tempRoomList){
+															if(room.getRoomID() == roomID){
+																roomIdFlag = true;
+															}
+														}
+													}
+													if(roomIdFlag==false){
+														System.out.println("\nPlease enter valid room ID!");
+													}
+												}while(roomIdFlag==false);
+												
+												int userID = userBean.getUserID(); 
+												DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+												
+												long differenceInDays = 0;
+												LocalDate parsedBookedToDate = null, parsedBookedFromDate = null;
+												do{
+													do{
+														System.out.print("\nEnter Check-In date (dd-mm-yyyy) : ");
+														bookedFrom = scanner.next();
+														dateFlag = CustomerService.validateDate(bookedFrom);
+														if(dateFlag==false){
+															System.out.println("\nPlease enter valid date in the specified format!");
+														}
+													}while(dateFlag == false);
+													
+													parsedBookedFromDate = LocalDate.parse(bookedFrom, formatter);
+													
+													do{
+														System.out.print("Enter Check-Out date (dd-mm-yyyy): ");
+														bookedTo = scanner.next();
+														dateFlag = CustomerService.validateDate(bookedTo);
+														if(dateFlag==false){
+															System.out.println("\nPlease enter valid date in the specified format!");
+														}
+													}while(dateFlag == false);
+													
+													parsedBookedToDate = LocalDate.parse(bookedTo, formatter);
+													
+													differenceInDays = parsedBookedFromDate.until(parsedBookedToDate, ChronoUnit.DAYS);
+													
+													if(differenceInDays <= 0){
+														System.out.println("\nPlease enter valid check out date!");
+													}
+													
+												}while(differenceInDays<=0);
+												
+												do{
+													System.out.print("\nEnter number of adults : ");
+													numAdults = scanner.nextInt();
+													numAdultsFlag = CustomerService.validateNumAdults(Integer.toString(numAdults));
+													if(numAdultsFlag==false){
+														System.out.println("\nPlease enter valid number!");
+													}
+												}while(numAdultsFlag==false);
+												
+												do{
+													System.out.print("\nEnter number of children : ");
+													numChildren = scanner.nextInt();
+													numChildrenFlag = CustomerService.validateNumChildren(Integer.toString(numChildren));
+													if(numChildrenFlag==false){
+														System.out.println("\nPlease enter valid number!");
+													}
+												}while(numChildrenFlag==false);
+												
+												float amount = 0;
+												
+												BookingBean bookingBean = new BookingBean(bookingID, roomID, userID, numAdults, numChildren, amount, parsedBookedFromDate, parsedBookedToDate);
+												bookingID = customerService.bookRoom(bookingBean);
+												if(bookingID>0){
+													System.out.println("\nBooking is Successful! Your booking ID is: "+bookingID);
 												}
-											}while(dateFlag == false);
-											
-											LocalDate parsedBookedFromDate = LocalDate.parse(bookedFrom, formatter);
-											
-											do{
-												System.out.print("Enter end date : (dd-mm-yyyy)");
-												bookedTo = scanner.next();
-												dateFlag = CustomerService.validateDate(bookedTo);
-												if(dateFlag==false){
-													System.out.println("\nPlease enter valid date in the specified format!");
+												else{
+													System.out.println("\nBooking failed");
 												}
-											}while(dateFlag == false);
-											
-											LocalDate parsedBookedToDate = LocalDate.parse(bookedTo, formatter);
-											
-											do{
-												System.out.println("Enter no of Adults : ");
-												numAdults = scanner.nextInt();
-												numAdultsFlag = CustomerService.validateNumAdults(Integer.toString(numAdults));
-												if(numAdultsFlag==false){
-													System.out.println("\nPlease enter valid number!");
-												}
-											}while(numAdultsFlag==false);
-											
-											do{
-												System.out.println("Enter no of children : ");
-												numChildren = scanner.nextInt();
-												numChildrenFlag = CustomerService.validateNumChildren(Integer.toString(numChildren));
-												if(numChildrenFlag==false){
-													System.out.println("\nPlease enter valid number!");
-												}
-											}while(numChildrenFlag==false);
-											
-											float amount = 0;
-											
-											BookingBean bookingBean = new BookingBean(bookingID, roomID, userID, numAdults, numChildren, amount, parsedBookedFromDate, parsedBookedToDate);
-											bookingID = customerService.bookRoom(bookingBean);
-											if(bookingID>0){
-												System.out.println("Booking is Successful!!..Your booking ID is: "+bookingID);
 											}
 											else{
-												System.out.println("Booking failed");
+												System.out.println("\nNo rooms found.");
 											}
 										}
 										break;
 									case 3:
-										List<Object>bookingIDs = customerService.getBookingIDs(userBean.getUserID());
+										List<Integer> bookingIDs = customerService.getBookingIDs(userBean.getUserID());
 										int bookingId =0 ;
-										System.out.println("List of your booking IDs:");
-										System.out.println(bookingIDs);
-										System.out.println("Enter booking id :");
+										System.out.println("\nList of your Booking Reference Numbers:");
+										for(Integer id : bookingIDs){
+											System.out.println(id + "\n");
+										}
+										System.out.print("Enter booking id : ");
 										bookingId = scanner.nextInt();
 										List<List<Object>> bookingList = customerService.viewBookingStatus(bookingId,userBean.getUserID());
 										if(bookingList.size() > 0){
-											System.out.println("Your bookings are : \n");
-											System.out.println(bookingList);
+											System.out.println("\nYour booking status is : ");
+											for(List<Object> booking : bookingList){
+												System.out.println("Room number : " + booking.get(0));
+												System.out.println("Booking ID : " + booking.get(1));
+												System.out.println("Check in Date : " + booking.get(2));
+												System.out.println("Check out Date : " + booking.get(3));
+											}
 										}
 										else{
 											System.out.println("No bookings done. Book rooms and get exciting offers.");

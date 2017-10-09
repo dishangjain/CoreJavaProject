@@ -68,8 +68,7 @@ public class RoomBean {
 
 	@Override
 	public String toString() {
-		return "Room(Room ID=" + roomID + "Room number=" + roomNumber + ", Room type=" + roomType
-				+ ", rate/night=" + perNightRate + ", availability="
-				+ available + ")";
+		return "Room(Hotel ID=" + hotelID + ", Room ID=" + roomID + ", Room number=" + roomNumber + ", Room type=" + roomType
+				+ ", rate/night=" + perNightRate + ", availability=" + available + ")\n";
 	}
 }

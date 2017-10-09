@@ -77,10 +77,10 @@ public class BookingBean {
 
 	@Override
 	public String toString() {
-		return "BookingBean(Booking Reference Number=" + bookingID + ", RoomID=" + roomID
+		return "Booking(Booking Reference Number=" + bookingID + ", RoomID=" + roomID
 				+ ", UserID=" + userID + ", Number of adults=" + numAdults
 				+ ", Number of children=" + numChildren + ", Total amount per room=" + amount
-				+ ", Booking From=" + BookedFrom + ", Booking Upto=" + BookedTo + ")";
+				+ ", Booking From=" + BookedFrom + ", Booking Upto=" + BookedTo + ")\n";
 	}
 	
 }

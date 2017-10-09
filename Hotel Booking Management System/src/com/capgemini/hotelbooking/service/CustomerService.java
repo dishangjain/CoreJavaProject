@@ -113,8 +113,7 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public List<Object> getBookingIDs(int userId) throws BookingException {
-		
+	public List<Integer> getBookingIDs(int userId) throws BookingException {
 		return dao.getBookingIDs(userId);
 	}
 	

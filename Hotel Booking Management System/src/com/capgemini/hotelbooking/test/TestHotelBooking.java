@@ -35,10 +35,10 @@ public class TestHotelBooking{
 		float amount=9000;
 		LocalDate bookedFrom= LocalDate.of(2011, Month.JULY, 13);
 		LocalDate bookedTo= LocalDate.of(2011,Month.JULY , 15);
-		BookingBean bookingBean = new BookingBean(5, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
+		BookingBean bookingBean = new BookingBean(7, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
 		try {
 			bookingID=service.bookRoom(bookingBean);
-			assertEquals(5, bookingID); 
+			assertEquals(7, bookingID); 
 		} catch (BookingException e) {
 			
 			fail(e.getMessage());
@@ -56,10 +56,10 @@ public class TestHotelBooking{
 		float amount=9000;
 		LocalDate bookedFrom= LocalDate.of(2011, Month.JULY, 13);;
 		LocalDate bookedTo=LocalDate.of(2011,Month.JULY , 15);;
-		BookingBean bookingBean = new BookingBean(7, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
+		BookingBean bookingBean = new BookingBean(0, roomID, userID, numAdults, numChildren, amount, bookedFrom, bookedTo);
 		try {
 			bookingID=service.bookRoom(bookingBean);
-			assertEquals(7, bookingID); 
+			assertEquals(0, bookingID); 
 		} catch (BookingException e) {
 			
 			fail(e.getMessage());
@@ -79,10 +79,10 @@ public class TestHotelBooking{
 		String rating="4.6";
 		String email="welcome@oberoi.com";
 		String fax="123456";
-		HotelBean hotelBean = new HotelBean(0, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
+		HotelBean hotelBean = new HotelBean(4, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
 		try {
 			hotelID = adminService.addHotelDetails(hotelBean);
-			assertEquals(2, hotelID);  
+			assertEquals(4, hotelID);  
 		} catch (BookingException e) {
 			fail(e.getMessage());
 		}
@@ -104,7 +104,7 @@ public class TestHotelBooking{
 				HotelBean hotelBean = new HotelBean(0, city, hotelName, address, description, avgRatePerNight, phoneNumber1, phoneNumber2, rating, email, fax);
 				try {
 					hotelID = adminService.addHotelDetails(hotelBean);
-					assertEquals(4, hotelID);  
+					assertEquals(0, hotelID);  
 				} catch (BookingException e) {
 					fail(e.getMessage());
 				}

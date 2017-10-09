@@ -53,7 +53,7 @@ public class CustomerDao implements ICustomerDao {
 		String query= "UPDATE ROOMDETAILS SET AVAILABILITY='F' where room_id=? ";
 		try(PreparedStatement preparedStatement = connect.prepareStatement(query);) {
 			preparedStatement.setInt(1, roomID);
-			int recsAffected=preparedStatement.executeUpdate();
+			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			myLogger.error("Unable to update availability of room");
 		}
@@ -71,11 +71,11 @@ public class CustomerDao implements ICustomerDao {
 		
 		try(
 			PreparedStatement preparedStatement = connect.prepareStatement(query);
-				PreparedStatement preparedStatement1 = connect.prepareStatement(supportQuery);
+			PreparedStatement supportPreparedStatement = connect.prepareStatement(supportQuery);
 		){
-			preparedStatement1.setInt(1, bookingBean.getRoomID());
+			supportPreparedStatement.setInt(1, bookingBean.getRoomID());
 			myLogger.info("Support query Execution : " + supportQuery);
-			ResultSet resultSet = preparedStatement1.executeQuery();
+			ResultSet resultSet = supportPreparedStatement.executeQuery();
 			float perNightRate = 0;
 			while(resultSet.next()){
 				perNightRate = resultSet.getFloat("per_night_rate"); 
@@ -196,8 +196,8 @@ public class CustomerDao implements ICustomerDao {
 	}
 
 	@Override
-	public List<Object> getBookingIDs(int userId) throws BookingException {
-		List<Object> bookingIDs = new ArrayList<Object>(); 
+	public List<Integer> getBookingIDs(int userId) throws BookingException {
+		List<Integer> bookingIDs = new ArrayList<Integer>();
 		String query = "SELECT BOOKING_ID FROM BOOKINGDETAILS where user_id=?";
 		myLogger.info("Query Execution : " + query);
 		try (PreparedStatement pstmt= connect.prepareStatement(query);)
